@@ -7,18 +7,23 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		00953C6913E2409DBBC7D540 /* Montserrat-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D8EF6A0EF6EF43A9BDBB1C1E /* Montserrat-Bold.ttf */; };
 		00E356F31AD99517003FC87E /* MoviesDailyTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* MoviesDailyTests.m */; };
 		03466BC7AA8171C9D3C3959F /* libPods-MoviesDaily.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E9837FE6AA9CB4587A631E30 /* libPods-MoviesDaily.a */; };
 		06F9457BAC4DB401F8C4AD4C /* libPods-MoviesDaily-tvOSTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1C375EE35944EF0C97706502 /* libPods-MoviesDaily-tvOSTests.a */; };
 		13B07FBC1A68108700A75B9A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.m */; };
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
+		1463B7F5EF5248148D46CBC5 /* Montserrat-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9B19716669124E7EB4A14D3D /* Montserrat-Light.ttf */; };
+		1A374DB9F6344D42B4E4D276 /* Montserrat-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 6EDACB9A5CDE433EBD2F1195 /* Montserrat-Medium.ttf */; };
 		2D02E4BC1E0B4A80006451C7 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.m */; };
 		2D02E4BD1E0B4A84006451C7 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		2D02E4BF1E0B4AB3006451C7 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
 		2DCD954D1E0B4F2C00145EB5 /* MoviesDailyTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* MoviesDailyTests.m */; };
+		3680A17AB5134A2F9C86E8F9 /* Montserrat-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 669F37FA3F85418085193BF9 /* Montserrat-Regular.ttf */; };
 		5CF4B7D30FF0B012D8CFF4A2 /* libPods-MoviesDaily-MoviesDailyTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3F511DA360F7790DC6286B1A /* libPods-MoviesDaily-MoviesDailyTests.a */; };
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
+		BA745F3337004B4CA02D2F45 /* Montserrat-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A24C5D3AFBDC49B3A6119E93 /* Montserrat-SemiBold.ttf */; };
 		CE1FBDC8C3AEAD13BDFF793A /* libPods-MoviesDaily-tvOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E1E6E5D2C9159EC082CBB906 /* libPods-MoviesDaily-tvOS.a */; };
 /* End PBXBuildFile section */
 
@@ -56,12 +61,17 @@
 		2D02E4901E0B4A5D006451C7 /* MoviesDaily-tvOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "MoviesDaily-tvOSTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		3F511DA360F7790DC6286B1A /* libPods-MoviesDaily-MoviesDailyTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-MoviesDaily-MoviesDailyTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		5FF2165E086A22F23428B14F /* Pods-MoviesDaily-tvOSTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MoviesDaily-tvOSTests.release.xcconfig"; path = "Target Support Files/Pods-MoviesDaily-tvOSTests/Pods-MoviesDaily-tvOSTests.release.xcconfig"; sourceTree = "<group>"; };
+		669F37FA3F85418085193BF9 /* Montserrat-Regular.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Montserrat-Regular.ttf"; path = "../src/assets/fonts/Montserrat-Regular.ttf"; sourceTree = "<group>"; };
+		6EDACB9A5CDE433EBD2F1195 /* Montserrat-Medium.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Montserrat-Medium.ttf"; path = "../src/assets/fonts/Montserrat-Medium.ttf"; sourceTree = "<group>"; };
 		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = MoviesDaily/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		924E376A4E181190E0A59107 /* Pods-MoviesDaily-tvOSTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MoviesDaily-tvOSTests.debug.xcconfig"; path = "Target Support Files/Pods-MoviesDaily-tvOSTests/Pods-MoviesDaily-tvOSTests.debug.xcconfig"; sourceTree = "<group>"; };
+		9B19716669124E7EB4A14D3D /* Montserrat-Light.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Montserrat-Light.ttf"; path = "../src/assets/fonts/Montserrat-Light.ttf"; sourceTree = "<group>"; };
 		9C6365C56123B8942D2A6811 /* Pods-MoviesDaily-MoviesDailyTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MoviesDaily-MoviesDailyTests.debug.xcconfig"; path = "Target Support Files/Pods-MoviesDaily-MoviesDailyTests/Pods-MoviesDaily-MoviesDailyTests.debug.xcconfig"; sourceTree = "<group>"; };
+		A24C5D3AFBDC49B3A6119E93 /* Montserrat-SemiBold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Montserrat-SemiBold.ttf"; path = "../src/assets/fonts/Montserrat-SemiBold.ttf"; sourceTree = "<group>"; };
 		A38307DEAF6D5747BC8CBA6D /* Pods-MoviesDaily-MoviesDailyTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MoviesDaily-MoviesDailyTests.release.xcconfig"; path = "Target Support Files/Pods-MoviesDaily-MoviesDailyTests/Pods-MoviesDaily-MoviesDailyTests.release.xcconfig"; sourceTree = "<group>"; };
 		AFD7DC7DD8E35B6BD300611E /* Pods-MoviesDaily.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MoviesDaily.release.xcconfig"; path = "Target Support Files/Pods-MoviesDaily/Pods-MoviesDaily.release.xcconfig"; sourceTree = "<group>"; };
 		C4904745D2398E165B5D35F2 /* Pods-MoviesDaily-tvOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MoviesDaily-tvOS.debug.xcconfig"; path = "Target Support Files/Pods-MoviesDaily-tvOS/Pods-MoviesDaily-tvOS.debug.xcconfig"; sourceTree = "<group>"; };
+		D8EF6A0EF6EF43A9BDBB1C1E /* Montserrat-Bold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Montserrat-Bold.ttf"; path = "../src/assets/fonts/Montserrat-Bold.ttf"; sourceTree = "<group>"; };
 		E1E6E5D2C9159EC082CBB906 /* libPods-MoviesDaily-tvOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-MoviesDaily-tvOS.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E8776A7F966499A293662F5F /* Pods-MoviesDaily-tvOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MoviesDaily-tvOS.release.xcconfig"; path = "Target Support Files/Pods-MoviesDaily-tvOS/Pods-MoviesDaily-tvOS.release.xcconfig"; sourceTree = "<group>"; };
 		E9837FE6AA9CB4587A631E30 /* libPods-MoviesDaily.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-MoviesDaily.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -148,7 +158,6 @@
 				924E376A4E181190E0A59107 /* Pods-MoviesDaily-tvOSTests.debug.xcconfig */,
 				5FF2165E086A22F23428B14F /* Pods-MoviesDaily-tvOSTests.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -163,6 +172,18 @@
 				1C375EE35944EF0C97706502 /* libPods-MoviesDaily-tvOSTests.a */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		74AC8843CF3C44B594375994 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				D8EF6A0EF6EF43A9BDBB1C1E /* Montserrat-Bold.ttf */,
+				9B19716669124E7EB4A14D3D /* Montserrat-Light.ttf */,
+				6EDACB9A5CDE433EBD2F1195 /* Montserrat-Medium.ttf */,
+				669F37FA3F85418085193BF9 /* Montserrat-Regular.ttf */,
+				A24C5D3AFBDC49B3A6119E93 /* Montserrat-SemiBold.ttf */,
+			);
+			name = Resources;
 			sourceTree = "<group>";
 		};
 		832341AE1AAA6A7D00B99B32 /* Libraries */ = {
@@ -181,6 +202,7 @@
 				83CBBA001A601CBA00E9B192 /* Products */,
 				2D16E6871FA4F8E400B85C8A /* Frameworks */,
 				1B2782B7C1347838B0430302 /* Pods */,
+				74AC8843CF3C44B594375994 /* Resources */,
 			);
 			indentWidth = 2;
 			sourceTree = "<group>";
@@ -342,6 +364,11 @@
 			files = (
 				81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
+				00953C6913E2409DBBC7D540 /* Montserrat-Bold.ttf in Resources */,
+				1463B7F5EF5248148D46CBC5 /* Montserrat-Light.ttf in Resources */,
+				1A374DB9F6344D42B4E4D276 /* Montserrat-Medium.ttf in Resources */,
+				3680A17AB5134A2F9C86E8F9 /* Montserrat-Regular.ttf in Resources */,
+				BA745F3337004B4CA02D2F45 /* Montserrat-SemiBold.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
