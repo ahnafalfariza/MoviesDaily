@@ -1,14 +1,17 @@
 {
-    "eslint.format.enable": true,
-    "javascript.validate.enable": false,
-    "editor.codeActionsOnSave": {
-        "source.fixAll": true
-    },
-    "editor.defaultFormatter": "dbaeumer.vscode-eslint",
-    "eslint.codeActionsOnSave.mode": "all",
-    "eslint.enable": true,
-    "eslint.options": {
-        "extensinons": [".ts", ".js", ".tsx", ".jsx"]
-    },
-    "eslint.alwaysShowStatus": true,
+  "javascript.validate.enable": false,
+  "editor.codeActionsOnSave": {
+    "source.fixAll": true
+  },
+  "eslint.codeActionsOnSave.mode": "all",
+  "eslint.enable": true,
+  "eslint.options": {
+    "extensinons": [".ts", ".js", ".tsx", ".jsx"]
+  },
+  "prettier.jsxSingleQuote": true,
+  "prettier.singleQuote": true,
+  "editor.formatOnSave": true,
+  "eslint.alwaysShowStatus": true,
+  "eslint.format.enable": true,
+  "prettier.printWidth": 150
 }

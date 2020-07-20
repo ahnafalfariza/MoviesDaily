@@ -8,6 +8,8 @@ target 'MoviesDaily' do
 
   use_react_native!(:path => config["reactNativePath"])
 
+  pod 'RNFastImage', :path => '../node_modules/react-native-fast-image'
+
   target 'MoviesDailyTests' do
     inherit! :complete
     # Pods for testing
