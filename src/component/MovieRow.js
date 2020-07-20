@@ -5,7 +5,7 @@ import { requestImage } from "../api/api";
 
 const MoviePoster = (data) => {
   return (
-    <TouchableOpacity>
+    <TouchableOpacity onPress={() => {}}>
       <View style={styles.imageContainer}>
         <FastImage
           style={styles.image}
@@ -22,8 +22,8 @@ export default MoviePoster;
 const styles = StyleSheet.create({
   imageContainer: {
     margin: 4,
-    height: 150,
-    width: 100,
+    height: 180,
+    width: 120,
   },
   image: {
     height: "100%",

@@ -28,7 +28,14 @@ class HomeScreen extends Component {
   render() {
     return (
       <Screen>
-        <Text style={{ fontSize: 16, margin: 8, marginBottom: 0 }}>
+        <Text
+          style={{
+            fontSize: 21,
+            margin: 8,
+            marginBottom: 0,
+            fontFamily: "Montserrat-Bold",
+          }}
+        >
           Popular Movies
         </Text>
         <FlatList
