@@ -1,0 +1,14 @@
+{
+    "eslint.format.enable": true,
+    "javascript.validate.enable": false,
+    "editor.codeActionsOnSave": {
+        "source.fixAll": true
+    },
+    "editor.defaultFormatter": "dbaeumer.vscode-eslint",
+    "eslint.codeActionsOnSave.mode": "all",
+    "eslint.enable": true,
+    "eslint.options": {
+        "extensinons": [".ts", ".js", ".tsx", ".jsx"]
+    },
+    "eslint.alwaysShowStatus": true,
+}
