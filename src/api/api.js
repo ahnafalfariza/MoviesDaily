@@ -1,29 +1,35 @@
-const ROOT_URL = 'https://api.themoviedb.org/3';
-const API_KEY = '1abb3e68d878be1155d781ce812f80a8';
+import {
+  getPopularMoviesUrl,
+  getTopRatedMoviesUrl,
+  getUpcomingMoviesUrl,
+} from "./url";
 
-const defaultQuery = {
-  api_key: API_KEY,
-  language: 'en-US',
-  region: 'ID',
-  sort_by: 'popularity.desc',
-};
-
-const queryString = (obj) => {
-  return Object.entries(obj)
-    .map(([index, val]) => `${index}=${val}`)
-    .join('&');
-};
-
-export const request = async (url, content = {}) => {
-  const obj = { ...defaultQuery, ...content };
-  url = 'discover/movie';
-
-  const test = `${ROOT_URL}/${url}?${queryString(obj)}`;
-  const response = await (await fetch(test));
+export const request = async (url) => {
+  const response = await fetch(url);
   const json = await response.json();
   return json;
 };
 
-export const requestImage = (path, key = 'uri', width = 'w500') => {
-  return { [key]: `https://image.tmdb.org/t/p/${width}/${path}` };
+export const requestPopularMovie = async () => {
+  try {
+    return await request(getPopularMoviesUrl());
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const requestTopRatedMovie = async () => {
+  try {
+    return await request(getTopRatedMoviesUrl());
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const requestUpcomingMovie = async () => {
+  try {
+    return await request(getUpcomingMoviesUrl());
+  } catch (error) {
+    console.log(error);
+  }
 };
