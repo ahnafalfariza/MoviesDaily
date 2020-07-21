@@ -1,6 +1,8 @@
 import React from "react";
+import PropTypes from "prop-types";
 import { TouchableOpacity, View, StyleSheet } from "react-native";
 import FastImage from "react-native-fast-image";
+
 import { getImageUrl } from "../api/url";
 
 const MoviePoster = ({ item }) => {
@@ -18,6 +20,10 @@ const MoviePoster = ({ item }) => {
 };
 
 export default MoviePoster;
+
+MoviePoster.propTypes = {
+  item: PropTypes.obj,
+};
 
 const styles = StyleSheet.create({
   imageContainer: {

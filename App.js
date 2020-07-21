@@ -6,7 +6,7 @@
  * @flow strict-local
  */
 
-import React from 'react';
+// import React from 'react';
 import HomeScreen from './src/screen/HomeScreen';
 
 export default HomeScreen;
