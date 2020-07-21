@@ -8,12 +8,10 @@
   "eslint.options": {
     "extensinons": [".ts", ".js", ".tsx", ".jsx"]
   },
-  "prettier.jsxSingleQuote": true,
-  "prettier.singleQuote": true,
   "editor.formatOnSave": true,
   "eslint.alwaysShowStatus": true,
   "eslint.format.enable": true,
-  "prettier.printWidth": 150,
+  "prettier.printWidth": 120,
   "editor.tabSize": 2,
   "editor.detectIndentation": false
 }

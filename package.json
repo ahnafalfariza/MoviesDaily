@@ -5,17 +5,28 @@
   "scripts": {
     "android": "react-native run-android",
     "ios": "react-native run-ios",
+    "ios-se": "react-native run-ios --simulator=\"iPhone SE (2nd generation)\"",
     "start": "react-native start",
     "test": "jest",
     "lint": "./node_modules/.bin/eslint --ignore-path .gitignore . --fix"
   },
   "dependencies": {
+    "@react-native-community/masked-view": "^0.1.10",
+    "@react-navigation/bottom-tabs": "^5.7.2",
+    "@react-navigation/native": "^5.7.1",
+    "@react-navigation/stack": "^5.7.1",
     "babel-eslint": "^10.1.0",
     "eslint-config-airbnb": "^18.2.0",
     "prop-types": "^15.7.2",
     "react": "16.13.1",
     "react-native": "0.63.1",
-    "react-native-fast-image": "^8.3.2"
+    "react-native-fast-image": "^8.3.2",
+    "react-native-gesture-handler": "^1.6.1",
+    "react-native-linear-gradient": "^2.5.6",
+    "react-native-reanimated": "^1.9.0",
+    "react-native-safe-area-context": "^3.1.1",
+    "react-native-screens": "^2.9.0",
+    "react-native-vector-icons": "^7.0.0"
   },
   "devDependencies": {
     "@babel/core": "^7.10.5",

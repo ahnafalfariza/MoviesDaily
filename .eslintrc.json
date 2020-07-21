@@ -36,5 +36,8 @@
       { "name": "Link", "linkAttribute": "to" }
     ]
   },
-  "rules": { "react/display-name": [1, { "ignoreTranspilerName": false }] }
+  "rules": {
+    "react/display-name": [1, { "ignoreTranspilerName": false }],
+    "react/prop-types": "off"
+  }
 }

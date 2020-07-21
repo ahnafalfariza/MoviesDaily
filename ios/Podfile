@@ -10,6 +10,8 @@ target 'MoviesDaily' do
 
   pod 'RNFastImage', :path => '../node_modules/react-native-fast-image'
 
+  pod 'RNVectorIcons', :path => '../node_modules/react-native-vector-icons'
+
   target 'MoviesDailyTests' do
     inherit! :complete
     # Pods for testing
