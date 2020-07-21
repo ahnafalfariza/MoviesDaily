@@ -1,16 +1,16 @@
 import React from "react";
 import { TouchableOpacity, View, StyleSheet } from "react-native";
 import FastImage from "react-native-fast-image";
-import { requestImage } from "../api/api";
+import { getImageUrl } from "../api/url";
 
-const MoviePoster = (data) => {
+const MoviePoster = ({ item }) => {
   return (
     <TouchableOpacity onPress={() => {}}>
       <View style={styles.imageContainer}>
         <FastImage
           style={styles.image}
           resizeMode="cover"
-          source={requestImage(data.item.poster_path)}
+          source={getImageUrl(item.poster_path)}
         />
       </View>
     </TouchableOpacity>
