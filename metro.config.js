@@ -5,6 +5,7 @@
  * @format
  */
 
+// eslint-disable-next-line no-undef
 module.exports = {
   transformer: {
     getTransformOptions: async () => ({

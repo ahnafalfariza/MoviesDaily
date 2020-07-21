@@ -7,7 +7,7 @@
     "ios": "react-native run-ios",
     "start": "react-native start",
     "test": "jest",
-    "lint": "eslint ."
+    "lint": "./node_modules/.bin/eslint --ignore-path .gitignore . --fix"
   },
   "dependencies": {
     "babel-eslint": "^10.1.0",
@@ -23,11 +23,17 @@
     "babel-jest": "^26.1.0",
     "eslint": "^7.5.0",
     "eslint-plugin-react": "^7.20.3",
+    "husky": "^4.2.5",
     "jest": "^26.1.0",
     "metro-react-native-babel-preset": "^0.60.0",
     "react-test-renderer": "16.13.1"
   },
   "jest": {
     "preset": "react-native"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "npm run lint"
+    }
   }
 }
