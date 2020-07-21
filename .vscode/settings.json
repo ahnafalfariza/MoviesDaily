@@ -13,5 +13,7 @@
   "editor.formatOnSave": true,
   "eslint.alwaysShowStatus": true,
   "eslint.format.enable": true,
-  "prettier.printWidth": 150
+  "prettier.printWidth": 150,
+  "editor.tabSize": 2,
+  "editor.detectIndentation": false
 }
