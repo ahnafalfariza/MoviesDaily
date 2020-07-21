@@ -1,14 +1,19 @@
 import React, { Component } from "react";
-import { FlatList, Text } from "react-native";
-import { request } from "../api/api";
+import { ScrollView } from "react-native";
+
+import {
+  requestPopularMovie,
+  requestTopRatedMovie,
+  requestUpcomingMovie,
+} from "../api/api";
 import Screen from "../component/Screen.js";
-import MovieRow from "../component/MovieRow";
+import MoviesRow from "../component/MoviesRow";
 
 class HomeScreen extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      results: [],
+      moviesData: false,
     };
   }
 
@@ -18,34 +23,35 @@ class HomeScreen extends Component {
 
   requestMoviesInfo = async () => {
     try {
-      const data = await request();
-      this.setState({ results: data.results });
+      const data = await Promise.all([
+        requestTopRatedMovie(),
+        requestPopularMovie(),
+        requestUpcomingMovie(),
+      ]);
+      this.setState({ moviesData: data });
     } catch (error) {
-      error;
+      console.log(error);
     }
   };
 
   render() {
+    const { moviesData } = this.state;
     return (
       <Screen>
-        <Text
-          style={{
-            fontSize: 21,
-            margin: 8,
-            marginBottom: 0,
-            fontFamily: "Montserrat-Bold",
-          }}
-        >
-          Popular Movies
-        </Text>
-        <FlatList
-          data={this.state.results}
-          horizontal
-          renderItem={MovieRow}
-          keyExtractor={(item) => item.id.toString()}
-          style={{ margin: 4 }}
-          showsHorizontalScrollIndicator={false}
-        />
+        <ScrollView>
+          <MoviesRow
+            data={{ ...moviesData[0] }.results}
+            title={"Top Rated Movies"}
+          />
+          <MoviesRow
+            data={{ ...moviesData[1] }.results}
+            title={"Popular Movies"}
+          />
+          <MoviesRow
+            data={{ ...moviesData[2] }.results}
+            title={"Upcoming Movies"}
+          />
+        </ScrollView>
       </Screen>
     );
   }
