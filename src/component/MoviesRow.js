@@ -3,17 +3,18 @@ import PropTypes from "prop-types";
 import { View, Text, FlatList, StyleSheet } from "react-native";
 
 import MoviePoster from "./MoviePoster";
+import { normalize } from "../helper/FontSize";
 
-const MoviesRow = ({ data, title }) => {
+const MoviesRow = ({ data, title, navigation }) => {
   return (
     <View>
       <Text style={Styles.text}>{title}</Text>
       <FlatList
         data={data}
         horizontal
-        renderItem={MoviePoster}
+        renderItem={(item) => MoviePoster(item, navigation)}
         keyExtractor={(item) => item.id.toString()}
-        style={{ margin: 4 }}
+        style={{ margin: 8, marginTop: 4 }}
         showsHorizontalScrollIndicator={false}
       />
     </View>
@@ -23,15 +24,16 @@ const MoviesRow = ({ data, title }) => {
 MoviesRow.propTypes = {
   data: PropTypes.any,
   title: PropTypes.string,
+  navigation: PropTypes.any,
 };
 
 export default MoviesRow;
 
 const Styles = StyleSheet.create({
   text: {
-    fontSize: 21,
-    margin: 8,
+    fontSize: normalize(15),
+    margin: 16,
     marginBottom: 0,
-    fontFamily: "Montserrat-Bold",
+    fontFamily: "Montserrat-SemiBold",
   },
 });

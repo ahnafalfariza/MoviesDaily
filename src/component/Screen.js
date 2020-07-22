@@ -1,11 +1,10 @@
 import React from "react";
 import { SafeAreaView, StatusBar } from "react-native";
 
-// eslint-disable-next-line react/prop-types
 const Screen = ({ children }) => {
   return (
-    <SafeAreaView style={{ flex: 1, backgroundColor: "#ffffff" }}>
-      <StatusBar barStyle="dark-content" />
+    <SafeAreaView style={{ flex: 1, backgroundColor: "#ffffff", marginTop: StatusBar.currentHeight }}>
+      <StatusBar barStyle="default" translucent backgroundColor="transparent" />
       {children}
     </SafeAreaView>
   );
