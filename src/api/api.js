@@ -2,6 +2,7 @@ import {
   getPopularMoviesUrl,
   getTopRatedMoviesUrl,
   getUpcomingMoviesUrl,
+  getMovieDetailUrl,
 } from "./url";
 
 export const request = async (url) => {
@@ -29,6 +30,14 @@ export const requestTopRatedMovie = async () => {
 export const requestUpcomingMovie = async () => {
   try {
     return await request(getUpcomingMoviesUrl());
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const requestMovieDetail = async (id) => {
+  try {
+    return await request(getMovieDetailUrl(id));
   } catch (error) {
     console.log(error);
   }
