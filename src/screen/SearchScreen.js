@@ -1,17 +1,15 @@
 import React, { Component } from "react";
-import { Text, TextInput, View, Dimensions } from "react-native";
-
-import Icon from "react-native-vector-icons/Feather";
+import { Text, TextInput, View } from "react-native";
+import { FlatList, TouchableWithoutFeedback } from "react-native-gesture-handler";
 
 import Screen from "../component/Screen";
-import { requestSearchMovie } from "../api/api";
-import { orange, gray, lightGray, black } from "../helper/Color";
-import FastImage from "react-native-fast-image";
-import { getImageUrl } from "../api/url";
-import { FlatList, TouchableWithoutFeedback } from "react-native-gesture-handler";
 import MoviePoster from "../component/MoviePoster";
 import MovieRating from "../component/MovieDetail/MovieRating";
+import { requestSearchMovie } from "../api/api";
 import { genres } from "../helper/Genres";
+
+import Icon from "react-native-vector-icons/Feather";
+import { orange, lightGray, black } from "../helper/Color";
 
 class SearchScreen extends Component {
   constructor(props) {

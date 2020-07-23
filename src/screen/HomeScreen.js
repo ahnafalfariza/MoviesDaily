@@ -23,7 +23,7 @@ class HomeScreen extends Component {
 
   requestMoviesInfo = async () => {
     try {
-      const data = await Promise.all([requestTopRatedMovie(), requestPopularMovie(), requestUpcomingMovie()]);
+      const data = await Promise.all([requestPopularMovie(), requestTopRatedMovie(), requestUpcomingMovie()]);
       this.setState({ moviesData: data });
     } catch (error) {
       console.log(error);
@@ -56,8 +56,8 @@ class HomeScreen extends Component {
     return (
       <ScrollView refreshControl={<RefreshControl refreshing={isRefreshing} onRefresh={this.onRefresh} />}>
         {this.renderScreenTitle()}
-        <MoviesRow data={{ ...moviesData[0] }.results} title={"Top Rated"} navigation={navigation} />
-        <MoviesRow data={{ ...moviesData[1] }.results} title={"Popular"} navigation={navigation} />
+        <MoviesRow data={{ ...moviesData[0] }.results} title={"Popular"} navigation={navigation} />
+        <MoviesRow data={{ ...moviesData[1] }.results} title={"Top Rated"} navigation={navigation} />
         <MoviesRow data={{ ...moviesData[2] }.results} title={"Upcoming"} navigation={navigation} />
       </ScrollView>
     );
