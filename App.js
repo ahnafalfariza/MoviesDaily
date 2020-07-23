@@ -10,32 +10,27 @@ import React from "react";
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator, CardStyleInterpolators } from "@react-navigation/stack";
 
-import HomeScreen from "./src/screen/HomeScreen";
 import MovieDetailScreen from "./src/screen/MovieDetailScreen";
+import HomeDrawerNavigator from "./src/navigator/HomeDrawerNavigator";
+
+import { white } from "./src/helper/Color";
 
 const Stack = createStackNavigator();
 
-const HomeNavigator = () => {
+const AppNavigator = () => {
   return (
-    <Stack.Navigator initialRouteName="Home">
-      <Stack.Screen
-        name="Home"
-        component={HomeScreen}
-        options={{
-          headerTitle: false,
-          headerTransparent: true,
-        }}
-      />
+    <Stack.Navigator
+      initialRouteName="Home"
+      screenOptions={{ headerTitle: false, headerTransparent: true, gestureEnabled: false }}
+    >
+      <Stack.Screen name="Home" component={HomeDrawerNavigator} />
       <Stack.Screen
         name="MovieDetail"
         component={MovieDetailScreen}
         options={{
-          gestureEnabled: false,
           cardStyleInterpolator: CardStyleInterpolators.forRevealFromBottomAndroid,
-          headerTransparent: true,
-          headerTitle: false,
           headerBackTitleVisible: false,
-          headerTintColor: "#ffffff",
+          headerTintColor: white,
         }}
       />
     </Stack.Navigator>
@@ -45,7 +40,7 @@ const HomeNavigator = () => {
 const App = () => {
   return (
     <NavigationContainer>
-      <HomeNavigator />
+      <AppNavigator />
     </NavigationContainer>
   );
 };
