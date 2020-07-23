@@ -23,12 +23,11 @@ const AppNavigator = () => {
       initialRouteName="Home"
       screenOptions={{ headerTitle: false, headerTransparent: true, gestureEnabled: false }}
     >
-      <Stack.Screen name="Home" component={HomeDrawerNavigator} />
+      <Stack.Screen name="Home" component={HomeDrawerNavigator} options={{ headerShown: false }} />
       <Stack.Screen
         name="MovieDetail"
         component={MovieDetailScreen}
         options={{
-          cardStyleInterpolator: CardStyleInterpolators.forRevealFromBottomAndroid,
           headerBackTitleVisible: false,
           headerTintColor: white,
         }}
