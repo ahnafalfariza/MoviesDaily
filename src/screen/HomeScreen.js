@@ -1,17 +1,19 @@
 import React, { Component } from "react";
-import { ScrollView, Text, View, StyleSheet } from "react-native";
+import { ScrollView, Text, View, StyleSheet, RefreshControl } from "react-native";
 
 import { requestPopularMovie, requestTopRatedMovie, requestUpcomingMovie } from "../api/api";
 import Screen from "../component/Screen.js";
 import MoviesRow from "../component/MoviesRow";
 import { normalize } from "../helper/FontSize";
 import Header from "../component/Header";
+import { orange } from "../helper/Color";
 
 class HomeScreen extends Component {
   constructor(props) {
     super(props);
     this.state = {
       moviesData: false,
+      isRefreshing: false,
     };
   }
 
@@ -28,8 +30,15 @@ class HomeScreen extends Component {
     }
   };
 
+  onRefresh = async () => {
+    this.setState({ isRefreshing: true });
+    await this.requestMoviesInfo();
+    this.setState({ isRefreshing: false });
+  };
+
   renderHeader = () => {
-    return <Header />;
+    const { navigation } = this.props;
+    return <Header navigation={navigation} />;
   };
 
   renderScreenTitle = () => {
@@ -42,10 +51,11 @@ class HomeScreen extends Component {
   };
 
   renderMoviesComponent = () => {
-    const { moviesData } = this.state;
+    const { moviesData, isRefreshing } = this.state;
     const { navigation } = this.props;
     return (
-      <ScrollView>
+      <ScrollView refreshControl={<RefreshControl refreshing={isRefreshing} onRefresh={this.onRefresh} />}>
+        {this.renderScreenTitle()}
         <MoviesRow data={{ ...moviesData[0] }.results} title={"Top Rated"} navigation={navigation} />
         <MoviesRow data={{ ...moviesData[1] }.results} title={"Popular"} navigation={navigation} />
         <MoviesRow data={{ ...moviesData[2] }.results} title={"Upcoming"} navigation={navigation} />
@@ -57,7 +67,6 @@ class HomeScreen extends Component {
     return (
       <Screen>
         {this.renderHeader()}
-        {this.renderScreenTitle()}
         {this.renderMoviesComponent()}
       </Screen>
     );
@@ -77,7 +86,7 @@ const Styles = StyleSheet.create({
   titleBar: {
     width: 30,
     height: 5,
-    backgroundColor: "#000000",
+    backgroundColor: orange,
     marginTop: 2,
     marginBottom: 12,
     marginLeft: 16,
