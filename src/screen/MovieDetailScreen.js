@@ -1,17 +1,29 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-import { Text, View, StatusBar, ScrollView } from "react-native";
-import Icon from "react-native-vector-icons/FontAwesome";
+import { View, StatusBar, ScrollView, StyleSheet } from "react-native";
 
-import { requestMovieDetail } from "../api/api";
+import { requestMovieDetail, requestMovieCredit, requestMovieImage, requestMovieRecommendations } from "../api/api";
+
 import MovieBackdrop from "../component/MovieDetail/MovieBackdrop";
 import MovieOverview from "../component/MovieDetail/MovieOverview";
+import MovieImages from "../component/MovieDetail/MovieImages";
+import MovieCast from "../component/MovieDetail/MovieCast";
+import MovieRecommendations from "../component/MovieDetail/MovieRecommendations";
+import MovieGenres from "../component/MovieDetail/MovieGenres";
+import MovieRating from "../component/MovieDetail/MovieRating";
+import MoviePlayButton from "../component/MovieDetail/MoviePlayButton";
+import MovieTitle from "../component/MovieDetail/MovieTitle";
+import { black, white } from "../helper/Color";
 
 class MovieDetailScreen extends Component {
   constructor(props) {
     super(props);
     this.state = {
       movieData: {},
+      credit: {},
+      images: {},
+      recommendations: {},
+      isLoaded: false,
     };
   }
 
@@ -21,134 +33,89 @@ class MovieDetailScreen extends Component {
 
   requestInfoDetail = async () => {
     const { id } = this.props.route.params;
-    const data = await requestMovieDetail(id);
-    this.setState({ movieData: data });
+    console.log("movie id", id);
+    try {
+      const [movieData, credit, images, recommendations] = await Promise.all([
+        requestMovieDetail(id),
+        requestMovieCredit(id),
+        requestMovieImage(id),
+        requestMovieRecommendations(id),
+      ]);
+      this.setState({ movieData, credit, images, recommendations, isLoaded: true });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  movieInfoGeneral = () => {
+    const { movieData, isLoaded } = this.state;
+    return (
+      <MovieBackdrop backdrop={movieData.backdrop_path}>
+        {isLoaded && (
+          <View>
+            <MovieTitle title={movieData.title} />
+            <MovieRating rating={movieData.vote_average} />
+          </View>
+        )}
+      </MovieBackdrop>
+    );
+  };
+
+  movieInfoDetail = () => {
+    const { movieData, credit, isLoaded, images, recommendations } = this.state;
+    const { navigation } = this.props;
+    return (
+      <View style={Styles.movieDetailWrapper}>
+        <View style={Styles.movieDetail}>
+          {isLoaded && (
+            <View>
+              <MovieGenres genre={movieData.genres} />
+              <MovieOverview overview={movieData.overview} />
+              <MovieCast credit={credit} />
+              <MovieImages images={images} />
+              <MovieRecommendations recommendations={recommendations} navigation={navigation} />
+            </View>
+          )}
+        </View>
+        <MoviePlayButton />
+      </View>
+    );
   };
 
   render() {
-    const { movieData } = this.state;
     return (
-      <ScrollView style={{ backgroundColor: "#ffffff", flexGrow: 1 }}>
+      <ScrollView style={Styles.scrollview}>
         <StatusBar translucent />
-        <MovieBackdrop movieData={movieData}>
-          <MovieTitle movieData={movieData} />
-        </MovieBackdrop>
-        <MovieInfoDetail movieData={movieData} />
+        {this.movieInfoGeneral()}
+        {this.movieInfoDetail()}
       </ScrollView>
     );
   }
 }
-
-const MovieInfoDetail = ({ movieData }) => {
-  return (
-    <View style={{ flex: 1, backgroundColor: "#000000" }}>
-      <View
-        style={{
-          flex: 1,
-          padding: 16,
-          paddingTop: 24,
-          borderTopLeftRadius: 16,
-          borderTopRightRadius: 16,
-          backgroundColor: "#ffffff",
-        }}
-      >
-        <Genres genre={movieData.genres} />
-        <MovieOverview overview={movieData.overview} />
-        <Text style={{ fontFamily: "Montserrat-Bold", fontSize: 18, marginBottom: 4, marginTop: 24 }}>Cast</Text>
-        <Text style={{ fontFamily: "Montserrat-Bold", fontSize: 18, marginBottom: 4, marginTop: 24 }}>Video</Text>
-        <Text style={{ fontFamily: "Montserrat-Bold", fontSize: 18, marginBottom: 4, marginTop: 24 }}>
-          Movies like this
-        </Text>
-      </View>
-    </View>
-  );
-};
-
-const Genres = ({ genre = [] }) => {
-  let component = genre.map((item, index) => {
-    return (
-      <View
-        key={index}
-        style={{
-          paddingHorizontal: 8,
-          paddingVertical: 4,
-          borderWidth: 0.75,
-          borderColor: "#000080",
-          borderRadius: 4,
-          marginRight: 4,
-        }}
-      >
-        <Text style={{ color: "#000080", fontFamily: "Montserrat-Light", fontSize: 12 }}>{item.name}</Text>
-      </View>
-    );
-  });
-
-  return <View style={{ flexDirection: "row" }}>{component}</View>;
-};
-
-const MovieTitle = ({ movieData }) => {
-  return (
-    <View style={{ position: "absolute", bottom: 0, left: 0, right: 0, margin: 16, borderTopLeftRadius: 16 }}>
-      <Text style={{ fontFamily: "Montserrat-Bold", fontSize: 24, color: "#ffffff" }}>{movieData.title}</Text>
-      <View style={{ width: 30, height: 5, backgroundColor: "#ffffff", marginTop: 4 }} />
-      <MovieRatingAndDuration rating={movieData.vote_average} duration={movieData.runtime} />
-    </View>
-  );
-};
-
-const MovieRatingAndDuration = ({ rating, duration }) => {
-  const getDuration = () => {
-    if (duration <= 60) {
-      return `${duration}m`;
-    } else {
-      const h = Math.floor(duration / 60);
-      const m = duration % 60;
-      return `${h}h ` + (m != 0 ? `${m}m` : "");
-    }
-  };
-
-  const Star = ({ color, rating = 10 }) => {
-    const items = [];
-    for (let i = 1; i <= 5; i++) {
-      items.push(<Icon key={i} name="star" size={15} color={color} />);
-    }
-    return (
-      <View style={{ position: "absolute", flexDirection: "row", overflow: "hidden", width: 75 * (rating / 10) }}>
-        {items}
-      </View>
-    );
-  };
-
-  const Rating = () => {
-    return (
-      <View style={{ flexDirection: "row" }}>
-        <Star color={"#ffffff"} />
-        <Star color={"#ffd700"} rating={rating} />
-        <Text style={{ color: "#ffffff", marginLeft: 75, fontFamily: "Montserrat-Medium" }}>
-          {(rating / 2).toFixed(1)}
-        </Text>
-      </View>
-    );
-  };
-
-  const Duration = () => {
-    return (
-      <Text style={{ color: "#ffffff", position: "absolute", right: 0, fontFamily: "Montserrat-Medium" }}>
-        {getDuration()}
-      </Text>
-    );
-  };
-
-  return (
-    <View style={{ flexDirection: "row", marginTop: 8 }}>
-      <Rating />
-      <Duration />
-    </View>
-  );
-};
 
 export default MovieDetailScreen;
 
 MovieDetailScreen.propTypes = {
   route: PropTypes.any,
 };
+
+const Styles = StyleSheet.create({
+  scrollview: {
+    backgroundColor: white,
+    flexGrow: 1,
+  },
+
+  movieDetailWrapper: {
+    flex: 1,
+    backgroundColor: black,
+  },
+
+  movieDetail: {
+    flex: 1,
+    padding: 16,
+    paddingTop: 24,
+    borderTopLeftRadius: 16,
+    borderTopRightRadius: 16,
+    backgroundColor: white,
+  },
+});

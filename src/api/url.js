@@ -30,6 +30,13 @@ export const getUpcomingMoviesUrl = () => `${ROOT_URL}${url.upcoming}?${queryStr
 
 export const getMovieDetailUrl = (id) => `${ROOT_URL}${url.movie}/${id}?${queryString(defaultQuery)}`;
 
+export const getMovieCreditUrl = (id) => `${ROOT_URL}${url.movie}/${id}/credits?${queryString(defaultQuery)}`;
+
+export const getMovieImageUrl = (id) => `${ROOT_URL}${url.movie}/${id}/images?${queryString({ api_key: API_KEY })}`;
+
+export const getMovieRecommendationsUrl = (id) =>
+  `${ROOT_URL}${url.movie}/${id}/recommendations?${queryString(defaultQuery)}`;
+
 export const getImageUrl = (path, key = "uri", width = "w500") => {
   return { [key]: `${IMAGE_URL}${width}${path}` };
 };
