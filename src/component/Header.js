@@ -14,15 +14,19 @@ const Menu = ({ navigation }) => {
   );
 };
 
-const Search = () => {
-  return <Icon name={"search"} size={20} />;
+const Search = ({ navigation }) => {
+  return (
+    <TouchableWithoutFeedback onPress={() => navigation.navigate("Search")}>
+      <Icon name={"search"} size={20} />
+    </TouchableWithoutFeedback>
+  );
 };
 
 const Header = ({ navigation }) => {
   return (
     <View style={{ margin: 16, flexDirection: "row", justifyContent: "space-between" }}>
       <Menu navigation={navigation} />
-      <Search />
+      <Search navigation={navigation} />
     </View>
   );
 };
