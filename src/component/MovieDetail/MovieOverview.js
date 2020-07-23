@@ -1,6 +1,8 @@
 import React, { useState } from "react";
-import { View, Text, StyleSheet } from "react-native";
+import { View, Text } from "react-native";
 import { TouchableWithoutFeedback } from "react-native-gesture-handler";
+
+import { Styles } from "./Styles";
 
 const MovieOverview = ({ overview }) => {
   const [textShown, setTextShown] = useState(false);
@@ -17,16 +19,3 @@ const MovieOverview = ({ overview }) => {
 };
 
 export default MovieOverview;
-
-const Styles = StyleSheet.create({
-  titleText: {
-    fontFamily: "Montserrat-Bold",
-    fontSize: 18,
-    marginBottom: 4,
-    marginTop: 24,
-  },
-
-  textOverview: {
-    fontFamily: "Montserrat-Regular",
-  },
-});
