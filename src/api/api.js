@@ -7,74 +7,64 @@ import {
   getMovieImageUrl,
   getMovieRecommendationsUrl,
   getSearchMovieUrl,
+  getPopularTVShowUrl,
+  getTopRatedTVShowUrl,
+  getOnTheAirTVShowUrl,
+  getSearchTvUrl,
+  getTvShowDetailUrl,
+  getTvShowCreditUrl,
+  getTvShowImageUrl,
+  getTvShowRecommendationsUrl,
 } from "./url";
 
 export const request = async (url) => {
-  const response = await fetch(url);
-  const json = await response.json();
-  return json;
+  return fetch(url)
+    .then(handleErrors)
+    .then((response) => response.json())
+    .catch((error) => {
+      console.error(error);
+    });
 };
 
-export const requestPopularMovie = async () => {
-  try {
-    return await request(getPopularMoviesUrl());
-  } catch (error) {
-    console.log(error);
-  }
+const handleErrors = (response) => {
+  if (!response.ok) throw Error(response.statusText);
+  return response;
 };
 
-export const requestTopRatedMovie = async () => {
-  try {
-    return await request(getTopRatedMoviesUrl());
-  } catch (error) {
-    console.log(error);
-  }
+export const requestMovieScreen = (callback, err) => {
+  return Promise.all([request(getPopularMoviesUrl()), request(getTopRatedMoviesUrl()), request(getUpcomingMoviesUrl())])
+    .then((values) => callback(values))
+    .catch(err);
 };
 
-export const requestUpcomingMovie = async () => {
-  try {
-    return await request(getUpcomingMoviesUrl());
-  } catch (error) {
-    console.log(error);
-  }
+export const requestTVShowScreen = (callback, err) => {
+  return Promise.all([request(getPopularTVShowUrl()), request(getTopRatedTVShowUrl()), request(getOnTheAirTVShowUrl())])
+    .then((values) => callback(values))
+    .catch(err);
 };
 
-export const requestMovieDetail = async (id) => {
-  try {
-    return await request(getMovieDetailUrl(id));
-  } catch (error) {
-    console.log(error);
-  }
+export const requestMovieDetailScreen = (id) => {
+  return Promise.all([
+    request(getMovieDetailUrl(id)),
+    request(getMovieCreditUrl(id)),
+    request(getMovieImageUrl(id)),
+    request(getMovieRecommendationsUrl(id)),
+  ]).catch((error) => console.log(error));
 };
 
-export const requestMovieCredit = async (id) => {
-  try {
-    return await request(getMovieCreditUrl(id));
-  } catch (error) {
-    console.log(error);
-  }
-};
-
-export const requestMovieImage = async (id) => {
-  try {
-    return await request(getMovieImageUrl(id));
-  } catch (error) {
-    console.log(error);
-  }
-};
-
-export const requestMovieRecommendations = async (id) => {
-  try {
-    return await request(getMovieRecommendationsUrl(id));
-  } catch (error) {
-    console.log(error);
-  }
+export const requestTvDetailScreen = (id) => {
+  return Promise.all([
+    request(getTvShowDetailUrl(id)),
+    request(getTvShowCreditUrl(id)),
+    request(getTvShowImageUrl(id)),
+    request(getTvShowRecommendationsUrl(id)),
+  ]).catch((error) => console.log(error));
 };
 
 export const requestSearchMovie = async (keyword) => {
-  try {
-    return await request(getSearchMovieUrl(keyword));
-  } catch (error) {
-    console.log(error);
-  }
+  return await request(getSearchMovieUrl(keyword));
+};
+
+export const requestSearchTv = async (keyword) => {
+  return await request(getSearchTvUrl(keyword));
 };
