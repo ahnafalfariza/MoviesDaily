@@ -5,14 +5,14 @@ import { View, Text, FlatList, StyleSheet } from "react-native";
 import MoviePoster from "../MoviePoster";
 import { normalize } from "../../helper/FontSize";
 
-const MoviesRow = ({ data, title, navigation }) => {
+const MoviesRow = ({ data, title, navigation, type }) => {
   return (
     <View>
       <Text style={Styles.text}>{title}</Text>
       <FlatList
         data={data}
         horizontal
-        renderItem={({ item }) => <MoviePoster item={item} navigation={navigation} />}
+        renderItem={({ item }) => <MoviePoster item={item} navigation={navigation} type={type} />}
         keyExtractor={(item) => item.id.toString()}
         style={{ margin: 8, marginTop: 4 }}
         showsHorizontalScrollIndicator={false}

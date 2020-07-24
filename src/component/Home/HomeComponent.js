@@ -38,9 +38,9 @@ class HomeComponent extends Component {
   };
 
   renderMovieRow = () => {
-    const { navigation, data, subTitle } = this.props;
+    const { navigation, data, subTitle, type } = this.props;
     return subTitle.map((title, index) => (
-      <MoviesRow key={index} data={{ ...data[index] }.results} title={title} navigation={navigation} />
+      <MoviesRow key={index} data={{ ...data[index] }.results} title={title} navigation={navigation} type={type} />
     ));
   };
 
