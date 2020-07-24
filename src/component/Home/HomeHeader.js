@@ -3,7 +3,7 @@ import { View } from "react-native";
 import FastImage from "react-native-fast-image";
 import Icon from "react-native-vector-icons/Feather";
 
-import MenuIcon from "../assets/icons/open-menu.png";
+import MenuIcon from "../../assets/icons/open-menu.png";
 import { TouchableWithoutFeedback } from "react-native-gesture-handler";
 
 const Menu = ({ navigation }) => {
@@ -14,21 +14,21 @@ const Menu = ({ navigation }) => {
   );
 };
 
-const Search = ({ navigation }) => {
+const Search = ({ navigation, type }) => {
   return (
-    <TouchableWithoutFeedback onPress={() => navigation.navigate("Search")}>
+    <TouchableWithoutFeedback onPress={() => navigation.navigate("Search", { type: type })}>
       <Icon name={"search"} size={20} />
     </TouchableWithoutFeedback>
   );
 };
 
-const Header = ({ navigation }) => {
+const HomeHeader = ({ navigation, type }) => {
   return (
     <View style={{ margin: 16, flexDirection: "row", justifyContent: "space-between" }}>
       <Menu navigation={navigation} />
-      <Search navigation={navigation} />
+      <Search navigation={navigation} type={type} />
     </View>
   );
 };
 
-export default Header;
+export default HomeHeader;

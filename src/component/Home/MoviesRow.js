@@ -2,8 +2,8 @@ import React from "react";
 import PropTypes from "prop-types";
 import { View, Text, FlatList, StyleSheet } from "react-native";
 
-import MoviePoster from "./MoviePoster";
-import { normalize } from "../helper/FontSize";
+import MoviePoster from "../MoviePoster";
+import { normalize } from "../../helper/FontSize";
 
 const MoviesRow = ({ data, title, navigation }) => {
   return (
