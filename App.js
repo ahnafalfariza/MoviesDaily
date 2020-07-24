@@ -15,6 +15,7 @@ import SearchScreen from "./src/screen/SearchScreen";
 import HomeDrawerNavigator from "./src/navigator/HomeDrawerNavigator";
 
 import { white } from "./src/helper/Color";
+import TVDetailScreen from "./src/screen/TVDetailScreen";
 
 const Stack = createStackNavigator();
 
@@ -32,6 +33,14 @@ const AppNavigator = () => {
       <Stack.Screen
         name="MovieDetail"
         component={MovieDetailScreen}
+        options={{
+          headerBackTitleVisible: false,
+          headerTintColor: white,
+        }}
+      />
+      <Stack.Screen
+        name="TVDetail"
+        component={TVDetailScreen}
         options={{
           headerBackTitleVisible: false,
           headerTintColor: white,
