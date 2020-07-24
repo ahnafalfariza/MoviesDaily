@@ -18,4 +18,12 @@ export const genres = {
   "10751": { name: "Family" },
   "10752": { name: "War" },
   "10770": { name: "TV Movie" },
+  "10759": { name: "Action & Adventure" },
+  "10762": { name: "Kids" },
+  "10763": { name: "News" },
+  "10764": { name: "Reality" },
+  "10765": { name: "Sci-Fi & Fantasy" },
+  "10766": { name: "Soap" },
+  "10767": { name: "Talk" },
+  "10768": { name: "War & Politics" },
 };
