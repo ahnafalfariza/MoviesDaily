@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { View, StatusBar, ScrollView, StyleSheet } from "react-native";
 
-import { requestMovieDetail, requestMovieCredit, requestMovieImage, requestMovieRecommendations } from "../api/api";
+import { requestMovieDetailScreen } from "../api/api";
 
 import MovieBackdrop from "../component/MovieDetail/MovieBackdrop";
 import MovieOverview from "../component/MovieDetail/MovieOverview";
@@ -34,17 +34,8 @@ class MovieDetailScreen extends Component {
   requestInfoDetail = async () => {
     const { id } = this.props.route.params;
     console.log("movie id", id);
-    try {
-      const [movieData, credit, images, recommendations] = await Promise.all([
-        requestMovieDetail(id),
-        requestMovieCredit(id),
-        requestMovieImage(id),
-        requestMovieRecommendations(id),
-      ]);
-      this.setState({ movieData, credit, images, recommendations, isLoaded: true });
-    } catch (error) {
-      console.log(error);
-    }
+    const [movieData, credit, images, recommendations] = await requestMovieDetailScreen(id);
+    this.setState({ movieData, credit, images, recommendations, isLoaded: true });
   };
 
   movieInfoGeneral = () => {
