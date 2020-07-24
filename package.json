@@ -18,7 +18,7 @@
     "babel-eslint": "^10.1.0",
     "prop-types": "^15.7.2",
     "react": "16.13.1",
-    "react-native": "0.63.1",
+    "react-native": "0.63.2",
     "react-native-fast-image": "^8.3.2",
     "react-native-gesture-handler": "^1.7.0",
     "react-native-linear-gradient": "^2.5.6",
