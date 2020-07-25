@@ -1,11 +1,13 @@
 import React from "react";
+import PropTypes from "prop-types";
 import { FlatList, View, TouchableWithoutFeedback, Text } from "react-native";
+
 import MoviePoster from "./MoviePoster";
 import MovieRating from "./MovieDetail/MovieRating";
 import { black } from "../helper/Color";
 import { genres } from "../helper/Genres";
 
-const ListMovies = ({ results, navigation, type }) => {
+const MovieList = ({ results, navigation, type }) => {
   return (
     <FlatList
       keyExtractor={(item) => item.id.toString()}
@@ -51,4 +53,10 @@ const Genres = (genreId = []) => {
   return text.join(", ");
 };
 
-export default ListMovies;
+export default MovieList;
+
+MovieList.propTypes = {
+  results: PropTypes.array,
+  navigation: PropTypes.object,
+  type: PropTypes.oneOf(["tv", "movie"]),
+};

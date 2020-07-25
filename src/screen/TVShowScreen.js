@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import PropTypes from "prop-types";
 import HomeComponent from "../component/Home/HomeComponent";
 import { requestTVShowScreen as requestTVShowAPI } from "../api/api";
 
@@ -32,3 +33,7 @@ class TVShowScreen extends Component {
 }
 
 export default TVShowScreen;
+
+TVShowScreen.propTypes = {
+  navigation: PropTypes.object,
+};

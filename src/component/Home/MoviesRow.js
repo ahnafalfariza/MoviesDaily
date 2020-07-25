@@ -1,5 +1,5 @@
 import React from "react";
-import PropTypes from "prop-types";
+import PropTypes, { object } from "prop-types";
 import { View, Text, FlatList, StyleSheet } from "react-native";
 
 import MoviePoster from "../MoviePoster";
@@ -21,13 +21,14 @@ const MoviesRow = ({ data, title, navigation, type }) => {
   );
 };
 
-MoviesRow.propTypes = {
-  data: PropTypes.any,
-  title: PropTypes.string,
-  navigation: PropTypes.any,
-};
-
 export default MoviesRow;
+
+MoviesRow.propTypes = {
+  data: PropTypes.arrayOf(object),
+  title: PropTypes.string,
+  navigation: PropTypes.object,
+  type: PropTypes.oneOf(["tv", "movie"]),
+};
 
 const Styles = StyleSheet.create({
   text: {

@@ -88,6 +88,7 @@ export default MovieDetailScreen;
 
 MovieDetailScreen.propTypes = {
   route: PropTypes.any,
+  navigation: PropTypes.object,
 };
 
 const Styles = StyleSheet.create({

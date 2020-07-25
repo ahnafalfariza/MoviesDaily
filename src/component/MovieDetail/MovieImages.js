@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import FastImage from "react-native-fast-image";
 import { FlatList } from "react-native-gesture-handler";
 import { View, Text } from "react-native";
@@ -33,3 +34,7 @@ const ImagesComponent = (data) => {
 };
 
 export default MovieImages;
+
+MovieImages.propTypes = {
+  images: PropTypes.object,
+};

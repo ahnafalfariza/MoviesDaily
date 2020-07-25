@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import PropTypes from "prop-types";
 import { View, Text } from "react-native";
 import { TouchableWithoutFeedback } from "react-native-gesture-handler";
 
@@ -19,3 +20,7 @@ const MovieOverview = ({ overview }) => {
 };
 
 export default MovieOverview;
+
+MovieOverview.propTypes = {
+  overview: PropTypes.string,
+};

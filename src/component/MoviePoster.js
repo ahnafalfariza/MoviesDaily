@@ -28,7 +28,10 @@ export default MoviePoster;
 
 MoviePoster.propTypes = {
   item: PropTypes.any,
+  height: PropTypes.number,
+  width: PropTypes.number,
   navigation: PropTypes.any,
+  type: PropTypes.oneOf(["tv", "movie"]),
 };
 
 const styles = StyleSheet.create({

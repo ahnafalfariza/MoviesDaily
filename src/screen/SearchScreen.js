@@ -1,10 +1,11 @@
 import React, { Component } from "react";
+import PropTypes from "prop-types";
 import { Text, TextInput, View, StyleSheet } from "react-native";
 
 import Screen from "../component/Screen";
 import { requestSearchMovie, requestSearchTv } from "../api/api";
 import { orange, lightGray } from "../helper/Color";
-import ListMovies from "../component/MovieList";
+import MovieList from "../component/MovieList";
 
 import Icon from "react-native-vector-icons/Feather";
 
@@ -51,7 +52,7 @@ class SearchScreen extends Component {
     const { results = [] } = this.state.search;
     const { type } = this.props.route.params;
     const { navigation } = this.props;
-    return <ListMovies results={results} navigation={navigation} type={type} />;
+    return <MovieList results={results} navigation={navigation} type={type} />;
   };
 
   render() {
@@ -80,6 +81,11 @@ class SearchScreen extends Component {
 }
 
 export default SearchScreen;
+
+SearchScreen.propTypes = {
+  route: PropTypes.any,
+  navigation: PropTypes.object,
+};
 
 const _styles = StyleSheet.create({
   headerTitle: {

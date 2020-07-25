@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import FastImage from "react-native-fast-image";
 import { getImageUrl } from "../../api/url";
 import { View, Text } from "react-native";
@@ -41,3 +42,9 @@ const Recommendations = (data, navigation, route) => {
 };
 
 export default MovieRecommendations;
+
+MovieRecommendations.propTypes = {
+  navigation: PropTypes.object,
+  recommendations: PropTypes.object,
+  route: PropTypes.string,
+};

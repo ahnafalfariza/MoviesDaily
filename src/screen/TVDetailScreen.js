@@ -28,13 +28,12 @@ class TVDetailScreen extends Component {
   }
 
   componentDidMount() {
-    console.log("ini di tv detail");
     this.requestInfoDetail();
   }
 
   requestInfoDetail = async () => {
     const { id } = this.props.route.params;
-    console.log("movie id", id);
+    console.log("tv id", id);
     const [movieData, credit, images, recommendations] = await requestTvDetailScreen(id);
     this.setState({ movieData, credit, images, recommendations, isLoaded: true });
   };
@@ -89,6 +88,7 @@ export default TVDetailScreen;
 
 TVDetailScreen.propTypes = {
   route: PropTypes.any,
+  navigation: PropTypes.object,
 };
 
 const Styles = StyleSheet.create({

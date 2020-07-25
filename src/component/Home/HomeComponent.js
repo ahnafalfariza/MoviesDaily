@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import PropTypes, { string, object } from "prop-types";
 import { ScrollView, Text, View, StyleSheet, RefreshControl } from "react-native";
 
 import Screen from "../Screen.js";
@@ -65,6 +66,14 @@ class HomeComponent extends Component {
 }
 
 export default HomeComponent;
+
+HomeComponent.propTypes = {
+  navigation: PropTypes.object,
+  type: PropTypes.oneOf(["tv", "movie"]),
+  data: PropTypes.arrayOf(object),
+  onRefresh: PropTypes.func,
+  subTitle: PropTypes.arrayOf(string),
+};
 
 const Styles = StyleSheet.create({
   screenTitle: {

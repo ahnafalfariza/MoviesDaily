@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import { View, Text, StyleSheet } from "react-native";
 import { darkBlue } from "../../helper/Color";
 
@@ -12,6 +13,10 @@ const MovieGenres = ({ genre = [] }) => {
   });
 
   return <View style={_styles.container}>{component}</View>;
+};
+
+MovieGenres.propTypes = {
+  genre: PropTypes.array,
 };
 
 export default MovieGenres;

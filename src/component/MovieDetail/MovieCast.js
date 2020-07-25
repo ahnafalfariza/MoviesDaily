@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import { FlatList, View, Text } from "react-native";
 import FastImage from "react-native-fast-image";
 
@@ -36,3 +37,7 @@ const Cast = (cast) => {
 };
 
 export default MovieCast;
+
+MovieCast.propTypes = {
+  credit: PropTypes.object,
+};

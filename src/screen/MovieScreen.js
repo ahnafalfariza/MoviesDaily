@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import PropTypes from "prop-types";
 import HomeComponent from "../component/Home/HomeComponent";
 import { requestMovieScreen as RequestMovieApi } from "../api/api";
 
@@ -32,3 +33,7 @@ class MovieScreen extends Component {
 }
 
 export default MovieScreen;
+
+MovieScreen.propTypes = {
+  navigation: PropTypes.object,
+};
