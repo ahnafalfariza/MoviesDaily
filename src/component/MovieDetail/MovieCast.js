@@ -7,7 +7,8 @@ import { getImageUrl } from "../../api/url";
 import { Styles } from "./Styles";
 
 const MovieCast = ({ credit }) => {
-  const cast = credit.cast.slice(0, 10);
+  let cast = credit.cast.sort((a, b) => (a.order > b.order ? 1 : -1));
+  cast = credit.cast.slice(0, 10);
   return (
     <View>
       <Text style={Styles.titleText}>Cast</Text>

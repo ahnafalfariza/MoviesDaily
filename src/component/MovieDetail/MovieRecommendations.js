@@ -2,8 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import FastImage from "react-native-fast-image";
 import { getImageUrl } from "../../api/url";
-import { View, Text } from "react-native";
-import { FlatList, TouchableWithoutFeedback } from "react-native-gesture-handler";
+import { View, Text, FlatList, TouchableWithoutFeedback } from "react-native";
 import { Styles } from "./Styles";
 import { useRoute } from "@react-navigation/native";
 
@@ -30,13 +29,15 @@ const Recommendations = (data, navigation, route) => {
 
   return (
     <TouchableWithoutFeedback onPress={() => navigation.push(route, { id: data.id })}>
-      <View style={[Styles.imagePlaceholder, Styles.movieRecommImages]}>
-        <FastImage source={imageUrl} style={Styles.movieRecommImages} />
+      <View>
+        <View style={[Styles.imagePlaceholder, Styles.movieRecommImages]}>
+          <FastImage source={imageUrl} style={Styles.movieRecommImages} />
+        </View>
+        <Text style={Styles.bottomText} numberOfLines={2}>
+          {data.title}
+          {data.name}
+        </Text>
       </View>
-      <Text style={Styles.bottomText} numberOfLines={2}>
-        {data.title}
-        {data.name}
-      </Text>
     </TouchableWithoutFeedback>
   );
 };

@@ -2,9 +2,9 @@ import React from "react";
 import PropTypes from "prop-types";
 import { View, Text, StyleSheet } from "react-native";
 
-import Icon from "react-native-vector-icons/FontAwesome";
-
 import { white, yellow } from "../../helper/Color";
+
+import Icon from "react-native-vector-icons/FontAwesome";
 
 const MovieRating = ({ rating, style, textColor = white }) => {
   const Rating = () => {
@@ -25,11 +25,7 @@ const MovieRating = ({ rating, style, textColor = white }) => {
     return <View style={[_styles.star, { width: 75 * (rating / 10) }]}>{items}</View>;
   };
 
-  return (
-    <View style={{ flexDirection: "row", ...style }}>
-      <Rating />
-    </View>
-  );
+  return <View style={{ flexDirection: "row", ...style }}>{rating !== 0 && <Rating />}</View>;
 };
 
 export default MovieRating;

@@ -1,11 +1,10 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-import { View } from "react-native";
+import { View, TouchableWithoutFeedback } from "react-native";
 import FastImage from "react-native-fast-image";
 import Icon from "react-native-vector-icons/Feather";
 
 import MenuIcon from "../../assets/icons/open-menu.png";
-import { TouchableWithoutFeedback } from "react-native-gesture-handler";
 
 class HomeHeader extends Component {
   menuIcon = () => {

@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types";
-import { View, Text } from "react-native";
-import { TouchableWithoutFeedback } from "react-native-gesture-handler";
+import { View, Text, TouchableWithoutFeedback } from "react-native";
 
 import { Styles } from "./Styles";
 

@@ -11,6 +11,7 @@ const MovieList = ({ results, navigation, type }) => {
   return (
     <FlatList
       keyExtractor={(item) => item.id.toString()}
+      keyboardShouldPersistTaps={"handled"}
       data={results}
       renderItem={({ item }) => MoviesPosterandInfo(item, navigation, type)}
       contentContainerStyle={{ marginVertical: 8 }}
