@@ -85,7 +85,7 @@ class MovieDetailScreen extends Component {
   render() {
     return (
       <ScrollView style={Styles.scrollview}>
-        <StatusBar translucent />
+        <StatusBar translucent backgroundColor={"transparent"} />
         {this.movieInfoGeneral()}
         {this.movieInfoDetail()}
       </ScrollView>

@@ -25,6 +25,7 @@
     "react-native-reanimated": "^1.10.1",
     "react-native-safe-area-context": "^3.1.1",
     "react-native-screens": "^2.9.0",
+    "react-native-status-bar-height": "^2.5.0",
     "react-native-vector-icons": "^7.0.0"
   },
   "devDependencies": {

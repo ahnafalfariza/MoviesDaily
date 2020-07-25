@@ -29,7 +29,7 @@ const _styles = StyleSheet.create({
 
   imageStyle: {
     flex: 1,
-    height: Dimensions.get("window").width * 1.7,
+    height: Dimensions.get("window").width * 1.7777,
     width: Dimensions.get("window").width,
   },
 

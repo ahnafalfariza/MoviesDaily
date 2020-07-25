@@ -12,7 +12,7 @@ const MoviesRow = ({ data, title, navigation }) => {
       <FlatList
         data={data}
         horizontal
-        renderItem={(item) => MoviePoster(item, navigation)}
+        renderItem={({ item }) => <MoviePoster item={item} navigation={navigation} />}
         keyExtractor={(item) => item.id.toString()}
         style={{ margin: 8, marginTop: 4 }}
         showsHorizontalScrollIndicator={false}

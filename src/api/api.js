@@ -6,6 +6,7 @@ import {
   getMovieCreditUrl,
   getMovieImageUrl,
   getMovieRecommendationsUrl,
+  getSearchMovieUrl,
 } from "./url";
 
 export const request = async (url) => {
@@ -65,6 +66,14 @@ export const requestMovieImage = async (id) => {
 export const requestMovieRecommendations = async (id) => {
   try {
     return await request(getMovieRecommendationsUrl(id));
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const requestSearchMovie = async (keyword) => {
+  try {
+    return await request(getSearchMovieUrl(keyword));
   } catch (error) {
     console.log(error);
   }

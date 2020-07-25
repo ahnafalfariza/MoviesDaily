@@ -5,20 +5,20 @@ import Icon from "react-native-vector-icons/FontAwesome";
 
 import { white, yellow } from "../../helper/Color";
 
-const MovieRating = ({ rating }) => {
+const MovieRating = ({ rating, style, textColor }) => {
   return (
-    <View style={{ flexDirection: "row", marginTop: 8 }}>
-      <Rating rating={rating} />
+    <View style={{ flexDirection: "row", ...style }}>
+      <Rating rating={rating} color={textColor} />
     </View>
   );
 };
 
-const Rating = ({ rating }) => {
+const Rating = ({ rating, color = white }) => {
   return (
     <View style={{ flexDirection: "row" }}>
       <Star color={white} />
       <Star color={yellow} rating={rating} />
-      <Text style={_styles.ratingText}>{(rating / 2).toFixed(1)}</Text>
+      <Text style={[_styles.ratingText, { color }]}>{(rating / 2).toFixed(1)}</Text>
     </View>
   );
 };
