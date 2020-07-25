@@ -6,7 +6,6 @@ import ImageViewer from "react-native-image-zoom-viewer";
 
 import { getImageUrl } from "../../api/url";
 import { Styles } from "./Styles";
-import { white } from "../../helper/Color";
 
 class MovieImages extends Component {
   constructor(props) {
