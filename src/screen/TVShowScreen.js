@@ -1,7 +1,9 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
+
 import HomeComponent from "../component/Home/HomeComponent";
 import { requestTVShowScreen as requestTVShowAPI } from "../api/api";
+import { TVShowTypes } from "../helper/Types";
 
 class TVShowScreen extends Component {
   constructor(props) {
@@ -23,7 +25,7 @@ class TVShowScreen extends Component {
     return (
       <HomeComponent
         type={"tv"}
-        subTitle={["Popular", "Top Rated", "On The Air"]}
+        subTitle={TVShowTypes}
         navigation={this.props.navigation}
         data={this.state.moviesData}
         onRefresh={this.requestMovieScreen}

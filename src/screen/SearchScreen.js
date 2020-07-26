@@ -7,7 +7,8 @@ import { requestSearchMovie, requestSearchTv } from "../api/api";
 import { orange, lightGray } from "../helper/Color";
 import MovieList from "../component/MovieList";
 
-import Icon from "react-native-vector-icons/Feather";
+import Icon from "react-native-vector-icons/Ionicons";
+import BackIcon from "../component/Utils/BackIcon";
 
 class SearchScreen extends Component {
   constructor(props) {
@@ -19,13 +20,19 @@ class SearchScreen extends Component {
 
   renderHeaderTitle = () => {
     const { type } = this.props.route.params;
+    const { navigation } = this.props;
     const title = type === "tv" ? "TV Shows" : "Movies";
+
     return (
       <View>
-        <Text style={_styles.headerTitle}>{`Search ${title}`}</Text>
+        <View style={{ flexDirection: "row", marginTop: 24 }}>
+          <BackIcon style={{ flex: 1, paddingLeft: 12, alignSelf: "flex-start" }} navigation={navigation} />
+          <Text style={_styles.headerTitle}>{`Search ${title}`}</Text>
+          <View style={{ flex: 1, paddingRight: 12 }}></View>
+        </View>
         <View style={_styles.titleBar} />
         <Text style={_styles.subTitle}>
-          {`We'll help you find your favorite ${title}. Discover wonderful ${title}.`}
+          {`We'll help you find your favorite ${title.toLowerCase()}. Discover wonderful ${title.toLowerCase()}.`}
         </Text>
       </View>
     );
@@ -91,8 +98,9 @@ const _styles = StyleSheet.create({
   headerTitle: {
     fontFamily: "Montserrat-Bold",
     fontSize: 20,
+    flex: 8,
     textAlign: "center",
-    marginTop: 24,
+    alignSelf: "center",
   },
 
   titleBar: {

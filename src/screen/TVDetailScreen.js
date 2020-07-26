@@ -14,6 +14,7 @@ import MovieRating from "../component/MovieDetail/MovieRating";
 import MoviePlayButton from "../component/MovieDetail/MoviePlayButton";
 import MovieTitle from "../component/MovieDetail/MovieTitle";
 import { black, white } from "../helper/Color";
+import BackIcon from "../component/Utils/BackIcon";
 
 class TVDetailScreen extends Component {
   constructor(props) {
@@ -22,6 +23,7 @@ class TVDetailScreen extends Component {
       movieData: {},
       credit: {},
       images: {},
+      videos: {},
       recommendations: {},
       isLoaded: false,
     };
@@ -34,8 +36,8 @@ class TVDetailScreen extends Component {
   requestInfoDetail = async () => {
     const { id } = this.props.route.params;
     console.log("tv id", id);
-    const [movieData, credit, images, recommendations] = await requestTvDetailScreen(id);
-    this.setState({ movieData, credit, images, recommendations, isLoaded: true });
+    const [movieData, credit, images, videos, recommendations] = await requestTvDetailScreen(id);
+    this.setState({ movieData, credit, images, videos, recommendations, isLoaded: true });
   };
 
   movieInfoGeneral = () => {
@@ -53,7 +55,7 @@ class TVDetailScreen extends Component {
   };
 
   movieInfoDetail = () => {
-    const { movieData, credit, isLoaded, images, recommendations } = this.state;
+    const { movieData, credit, isLoaded, images, recommendations, videos } = this.state;
     const { navigation } = this.props;
     return (
       <View style={Styles.movieDetailWrapper}>
@@ -68,18 +70,22 @@ class TVDetailScreen extends Component {
             </View>
           )}
         </View>
-        <MoviePlayButton />
+        <MoviePlayButton videoData={videos} navigation={navigation} />
       </View>
     );
   };
 
   render() {
+    const { navigation } = this.props;
     return (
-      <ScrollView style={Styles.scrollview}>
-        <StatusBar translucent backgroundColor={"transparent"} />
-        {this.movieInfoGeneral()}
-        {this.movieInfoDetail()}
-      </ScrollView>
+      <View>
+        <ScrollView style={Styles.scrollview}>
+          <StatusBar translucent backgroundColor={"transparent"} />
+          {this.movieInfoGeneral()}
+          {this.movieInfoDetail()}
+        </ScrollView>
+        <BackIcon navigation={navigation} style={{ marginLeft: 5, position: "absolute", top: 40 }} color={white} />
+      </View>
     );
   }
 }
