@@ -15,6 +15,10 @@ import {
   getTvShowCreditUrl,
   getTvShowImageUrl,
   getTvShowRecommendationsUrl,
+  getMovieVideoUrl,
+  getTvShowVideoUrl,
+  getMustWatchMoviesUrl,
+  getMustWatchTVShowUrl,
 } from "./url";
 
 export const request = async (url) => {
@@ -32,13 +36,23 @@ const handleErrors = (response) => {
 };
 
 export const requestMovieScreen = (callback, err) => {
-  return Promise.all([request(getPopularMoviesUrl()), request(getTopRatedMoviesUrl()), request(getUpcomingMoviesUrl())])
+  return Promise.all([
+    request(getPopularMoviesUrl()),
+    request(getTopRatedMoviesUrl()),
+    request(getMustWatchMoviesUrl()),
+    request(getUpcomingMoviesUrl()),
+  ])
     .then((values) => callback(values))
     .catch(err);
 };
 
 export const requestTVShowScreen = (callback, err) => {
-  return Promise.all([request(getPopularTVShowUrl()), request(getTopRatedTVShowUrl()), request(getOnTheAirTVShowUrl())])
+  return Promise.all([
+    request(getPopularTVShowUrl()),
+    request(getTopRatedTVShowUrl()),
+    request(getMustWatchTVShowUrl()),
+    request(getOnTheAirTVShowUrl()),
+  ])
     .then((values) => callback(values))
     .catch(err);
 };
@@ -48,6 +62,7 @@ export const requestMovieDetailScreen = (id) => {
     request(getMovieDetailUrl(id)),
     request(getMovieCreditUrl(id)),
     request(getMovieImageUrl(id)),
+    request(getMovieVideoUrl(id)),
     request(getMovieRecommendationsUrl(id)),
   ]).catch((error) => console.log(error));
 };
@@ -57,6 +72,7 @@ export const requestTvDetailScreen = (id) => {
     request(getTvShowDetailUrl(id)),
     request(getTvShowCreditUrl(id)),
     request(getTvShowImageUrl(id)),
+    request(getTvShowVideoUrl(id)),
     request(getTvShowRecommendationsUrl(id)),
   ]).catch((error) => console.log(error));
 };
