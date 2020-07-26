@@ -78,8 +78,8 @@ class MovieDetailScreen extends Component {
   render() {
     const { navigation } = this.props;
     return (
-      <View>
-        <ScrollView style={Styles.scrollview}>
+      <View style={{ flex: 1, backgroundColor: white }}>
+        <ScrollView style={Styles.scrollview} contentContainerStyle={{ flexGrow: 1 }}>
           <StatusBar translucent backgroundColor={"transparent"} />
           {this.movieInfoGeneral()}
           {this.movieInfoDetail()}

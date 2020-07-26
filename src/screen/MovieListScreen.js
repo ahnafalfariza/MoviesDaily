@@ -73,7 +73,6 @@ const _styles = StyleSheet.create({
     height: 5,
     backgroundColor: orange,
     marginTop: 4,
-    marginBottom: 12,
     alignSelf: "center",
   },
 
