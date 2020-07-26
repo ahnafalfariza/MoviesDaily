@@ -1,14 +1,20 @@
 import React from "react";
 import PropTypes, { object } from "prop-types";
-import { View, Text, FlatList, StyleSheet } from "react-native";
+import { View, Text, FlatList, StyleSheet, TouchableNativeFeedback } from "react-native";
 
 import MoviePoster from "../MoviePoster";
 import { normalize } from "../../helper/FontSize";
+import { orange } from "../../helper/Color";
 
 const MoviesRow = ({ data, title, navigation, type }) => {
   return (
     <View>
-      <Text style={Styles.text}>{title}</Text>
+      <View style={{ flexDirection: "row", justifyContent: "space-between" }}>
+        <Text style={Styles.text}>{title}</Text>
+        <TouchableNativeFeedback onPress={() => navigation.navigate("Movielist", { data, type, title })}>
+          <Text style={Styles.textMore}>More</Text>
+        </TouchableNativeFeedback>
+      </View>
       <FlatList
         data={data}
         horizontal
@@ -36,5 +42,14 @@ const Styles = StyleSheet.create({
     margin: 16,
     marginBottom: 0,
     fontFamily: "Montserrat-SemiBold",
+  },
+
+  textMore: {
+    fontSize: normalize(12),
+    margin: 16,
+    marginBottom: 0,
+    fontFamily: "Montserrat-SemiBold",
+    alignSelf: "flex-end",
+    color: orange,
   },
 });

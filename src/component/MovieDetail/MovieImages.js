@@ -44,6 +44,7 @@ class MovieImages extends Component {
   };
 
   render() {
+    if (this.images.length === 0) return null;
     return (
       <View>
         <Text style={Styles.titleText}>Image</Text>

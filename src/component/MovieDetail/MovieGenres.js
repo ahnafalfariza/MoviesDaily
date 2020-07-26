@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import { View, Text, StyleSheet } from "react-native";
 import { darkBlue } from "../../helper/Color";
 
-const MovieGenres = ({ genre = [] }) => {
+const MovieGenres = ({ genre }) => {
   let component = genre.map((item, index) => {
     return (
       <View key={index} style={_styles.view}>
@@ -15,11 +15,15 @@ const MovieGenres = ({ genre = [] }) => {
   return <View style={_styles.container}>{component}</View>;
 };
 
+export default MovieGenres;
+
 MovieGenres.propTypes = {
   genre: PropTypes.array,
 };
 
-export default MovieGenres;
+MovieGenres.defaultProps = {
+  genre: [],
+};
 
 const _styles = StyleSheet.create({
   container: {

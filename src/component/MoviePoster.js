@@ -6,7 +6,7 @@ import FastImage from "react-native-fast-image";
 import { getImageUrl } from "../api/url";
 import { gray } from "../helper/Color";
 
-const MoviePoster = ({ item, navigation, height = 180, width = 120, type }) => {
+const MoviePoster = ({ item, navigation, height, width, type }) => {
   return (
     <TouchableWithoutFeedback
       onPress={() => {
@@ -32,6 +32,11 @@ MoviePoster.propTypes = {
   width: PropTypes.number,
   navigation: PropTypes.any,
   type: PropTypes.oneOf(["tv", "movie"]),
+};
+
+MoviePoster.defaultProps = {
+  height: 180,
+  width: 120,
 };
 
 const styles = StyleSheet.create({

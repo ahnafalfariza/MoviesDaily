@@ -6,6 +6,9 @@ import { Styles } from "./Styles";
 
 const MovieOverview = ({ overview }) => {
   const [textShown, setTextShown] = useState(false);
+
+  if (!overview) return null;
+
   return (
     <View>
       <Text style={Styles.titleText}>Overview</Text>

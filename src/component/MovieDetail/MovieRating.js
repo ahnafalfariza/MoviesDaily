@@ -6,7 +6,7 @@ import { white, yellow } from "../../helper/Color";
 
 import Icon from "react-native-vector-icons/FontAwesome";
 
-const MovieRating = ({ rating, style, textColor = white }) => {
+const MovieRating = ({ rating, style, textColor }) => {
   const Rating = () => {
     return (
       <View style={{ flexDirection: "row" }}>
@@ -35,6 +35,10 @@ MovieRating.propTypes = {
   style: PropTypes.object,
   textColor: PropTypes.string,
   color: PropTypes.string,
+};
+
+MovieRating.defaultProps = {
+  textColor: white,
 };
 
 const _styles = StyleSheet.create({

@@ -1,5 +1,5 @@
 import React from "react";
-import PropTypes, { element } from "prop-types";
+import PropTypes from "prop-types";
 import { StatusBar, View, SafeAreaView, Platform, StyleSheet } from "react-native";
 
 import { getStatusBarHeight } from "react-native-status-bar-height";
@@ -27,7 +27,7 @@ const Screen = ({ children }) => {
 export default Screen;
 
 Screen.propTypes = {
-  children: PropTypes.arrayOf(element).isRequired,
+  children: PropTypes.any.isRequired,
 };
 
 const _styles = StyleSheet.create({

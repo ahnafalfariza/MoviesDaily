@@ -9,6 +9,9 @@ import { Styles } from "./Styles";
 const MovieCast = ({ credit }) => {
   let cast = credit.cast.sort((a, b) => (a.order > b.order ? 1 : -1));
   cast = credit.cast.slice(0, 10);
+
+  if (cast.length === 0) return null;
+
   return (
     <View>
       <Text style={Styles.titleText}>Cast</Text>

@@ -10,6 +10,8 @@ const MovieRecommendations = ({ recommendations, navigation }) => {
   const movieData = recommendations.results.slice(0, 10);
   const route = useRoute().name;
 
+  if (movieData.length === 0) return null;
+
   return (
     <View>
       <Text style={Styles.titleText}>Recommendations</Text>
