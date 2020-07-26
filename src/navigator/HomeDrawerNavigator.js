@@ -1,9 +1,10 @@
 import React from "react";
 import { createDrawerNavigator } from "@react-navigation/drawer";
 import { Text } from "react-native";
-import HomeScreen from "../screen/HomeScreen";
 
 import { black, white, orange } from "../helper/Color";
+import TVShowScreen from "../screen/TVShowScreen";
+import MovieScreen from "../screen/MovieScreen";
 
 const Drawer = createDrawerNavigator();
 
@@ -21,14 +22,14 @@ const HomeDrawerNavigator = () => {
     >
       <Drawer.Screen
         name="Movies"
-        component={HomeScreen}
+        component={MovieScreen}
         options={{
           drawerLabel: ({ color, focused }) => CustomDrawerStyle(color, focused, "Movies"),
         }}
       />
       <Drawer.Screen
         name="TV Show"
-        component={HomeScreen}
+        component={TVShowScreen}
         options={{
           drawerLabel: ({ color, focused }) => CustomDrawerStyle(color, focused, "TV Shows"),
         }}

@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import { FlatList, View, Text } from "react-native";
 import FastImage from "react-native-fast-image";
 
@@ -6,7 +7,11 @@ import { getImageUrl } from "../../api/url";
 import { Styles } from "./Styles";
 
 const MovieCast = ({ credit }) => {
-  const cast = credit.cast.slice(0, 10);
+  let cast = credit.cast.sort((a, b) => (a.order > b.order ? 1 : -1));
+  cast = credit.cast.slice(0, 10);
+
+  if (cast.length === 0) return null;
+
   return (
     <View>
       <Text style={Styles.titleText}>Cast</Text>
@@ -36,3 +41,7 @@ const Cast = (cast) => {
 };
 
 export default MovieCast;
+
+MovieCast.propTypes = {
+  credit: PropTypes.object,
+};

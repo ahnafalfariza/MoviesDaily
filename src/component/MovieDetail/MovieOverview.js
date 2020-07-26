@@ -1,11 +1,14 @@
 import React, { useState } from "react";
-import { View, Text } from "react-native";
-import { TouchableWithoutFeedback } from "react-native-gesture-handler";
+import PropTypes from "prop-types";
+import { View, Text, TouchableWithoutFeedback } from "react-native";
 
 import { Styles } from "./Styles";
 
 const MovieOverview = ({ overview }) => {
   const [textShown, setTextShown] = useState(false);
+
+  if (!overview) return null;
+
   return (
     <View>
       <Text style={Styles.titleText}>Overview</Text>
@@ -19,3 +22,7 @@ const MovieOverview = ({ overview }) => {
 };
 
 export default MovieOverview;
+
+MovieOverview.propTypes = {
+  overview: PropTypes.string,
+};

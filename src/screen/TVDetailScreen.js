@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { View, StatusBar, ScrollView, StyleSheet } from "react-native";
 
-import { requestMovieDetailScreen } from "../api/api";
+import { requestTvDetailScreen } from "../api/api";
 
 import MovieBackdrop from "../component/MovieDetail/MovieBackdrop";
 import MovieOverview from "../component/MovieDetail/MovieOverview";
@@ -16,7 +16,7 @@ import MovieTitle from "../component/MovieDetail/MovieTitle";
 import { black, white } from "../helper/Color";
 import BackIcon from "../component/Utils/BackIcon";
 
-class MovieDetailScreen extends Component {
+class TVDetailScreen extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -35,8 +35,8 @@ class MovieDetailScreen extends Component {
 
   requestInfoDetail = async () => {
     const { id } = this.props.route.params;
-    console.log("movie id", id);
-    const [movieData, credit, images, videos, recommendations] = await requestMovieDetailScreen(id);
+    console.log("tv id", id);
+    const [movieData, credit, images, videos, recommendations] = await requestTvDetailScreen(id);
     this.setState({ movieData, credit, images, videos, recommendations, isLoaded: true });
   };
 
@@ -46,7 +46,7 @@ class MovieDetailScreen extends Component {
       <MovieBackdrop backdrop={movieData.backdrop_path}>
         {isLoaded && (
           <View>
-            <MovieTitle title={movieData.title} />
+            <MovieTitle title={movieData.name} />
             <MovieRating rating={movieData.vote_average} />
           </View>
         )}
@@ -55,7 +55,7 @@ class MovieDetailScreen extends Component {
   };
 
   movieInfoDetail = () => {
-    const { movieData, credit, isLoaded, images, videos, recommendations } = this.state;
+    const { movieData, credit, isLoaded, images, recommendations, videos } = this.state;
     const { navigation } = this.props;
     return (
       <View style={Styles.movieDetailWrapper}>
@@ -90,9 +90,9 @@ class MovieDetailScreen extends Component {
   }
 }
 
-export default MovieDetailScreen;
+export default TVDetailScreen;
 
-MovieDetailScreen.propTypes = {
+TVDetailScreen.propTypes = {
   route: PropTypes.any,
   navigation: PropTypes.object,
 };

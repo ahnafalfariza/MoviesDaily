@@ -1,53 +1,38 @@
 import React, { Component } from "react";
-import { Text, TextInput, View } from "react-native";
-import { FlatList, TouchableWithoutFeedback } from "react-native-gesture-handler";
+import PropTypes from "prop-types";
+import { Text, TextInput, View, StyleSheet } from "react-native";
 
 import Screen from "../component/Screen";
-import MoviePoster from "../component/MoviePoster";
-import MovieRating from "../component/MovieDetail/MovieRating";
-import { requestSearchMovie } from "../api/api";
-import { genres } from "../helper/Genres";
+import { requestSearchMovie, requestSearchTv } from "../api/api";
+import { orange, lightGray } from "../helper/Color";
+import MovieList from "../component/MovieList";
 
-import Icon from "react-native-vector-icons/Feather";
-import { orange, lightGray, black } from "../helper/Color";
+import Icon from "react-native-vector-icons/Ionicons";
+import BackIcon from "../component/Utils/BackIcon";
 
 class SearchScreen extends Component {
   constructor(props) {
     super(props);
     this.state = {
       search: {},
-      isLoaded: false,
     };
   }
 
-  renderTitle = () => {
+  renderHeaderTitle = () => {
+    const { type } = this.props.route.params;
+    const { navigation } = this.props;
+    const title = type === "tv" ? "TV Shows" : "Movies";
+
     return (
       <View>
-        <Text style={{ fontFamily: "Montserrat-Bold", fontSize: 20, textAlign: "center", marginTop: 24 }}>
-          Search Movies
-        </Text>
-        <View
-          style={{
-            width: 30,
-            height: 5,
-            backgroundColor: orange,
-            marginTop: 4,
-            marginBottom: 12,
-            alignSelf: "center",
-          }}
-        />
-        <Text
-          style={{
-            margin: 16,
-            marginTop: 5,
-            fontFamily: "Montserrat-Regular",
-            fontSize: 12,
-            textAlign: "center",
-            alignSelf: "center",
-            width: "70%",
-          }}
-        >
-          {"We'll help you find your favorite movies. Discover wonderful movies."}
+        <View style={{ flexDirection: "row", marginTop: 24 }}>
+          <BackIcon style={{ flex: 1, paddingLeft: 12, alignSelf: "flex-start" }} navigation={navigation} />
+          <Text style={_styles.headerTitle}>{`Search ${title}`}</Text>
+          <View style={{ flex: 1, paddingRight: 12 }}></View>
+        </View>
+        <View style={_styles.titleBar} />
+        <Text style={_styles.subTitle}>
+          {`We'll help you find your favorite ${title.toLowerCase()}. Discover wonderful ${title.toLowerCase()}.`}
         </Text>
       </View>
     );
@@ -55,11 +40,11 @@ class SearchScreen extends Component {
 
   renderSearchText = () => {
     return (
-      <View style={{ marginHorizontal: 16, backgroundColor: lightGray, borderRadius: 24, flexDirection: "row" }}>
+      <View style={_styles.searchContainer}>
         <Icon name={"search"} size={20} style={{ margin: 12 }} />
         <View style={{ alignSelf: "center", flex: 1 }}>
           <TextInput
-            style={{ fontFamily: "Montserrat-Medium", fontSize: 14, flex: 1, marginRight: 12 }}
+            style={_styles.searchInput}
             placeholder={"Avengers: End Gamee"}
             onChangeText={(text) => this.requestMovie(text)}
             returnKeyType={"search"}
@@ -72,14 +57,15 @@ class SearchScreen extends Component {
 
   renderListMovies = () => {
     const { results = [] } = this.state.search;
+    const { type } = this.props.route.params;
     const { navigation } = this.props;
-    return <ListMovies results={results} navigation={navigation} />;
+    return <MovieList results={results} navigation={navigation} type={type} />;
   };
 
   render() {
     return (
       <Screen>
-        {this.renderTitle()}
+        {this.renderHeaderTitle()}
         {this.renderSearchText()}
         {this.renderListMovies()}
       </Screen>
@@ -92,47 +78,61 @@ class SearchScreen extends Component {
   };
 
   requestMovie = async (text) => {
-    const search = await requestSearchMovie(text);
-    this.setState({ search, isLoaded: true });
+    const { type } = this.props.route.params;
+    const requestSearch = type === "tv" ? requestSearchTv : requestSearchMovie;
+    if (text !== "") {
+      const search = await requestSearch(text);
+      this.setState({ search });
+    }
   };
 }
 
-const ListMovies = ({ results, navigation }) => {
-  return (
-    <FlatList
-      keyExtractor={(item) => item.id.toString()}
-      data={results}
-      renderItem={({ item }) => MoviesPosterandInfo(item, navigation)}
-      contentContainerStyle={{ marginVertical: 8 }}
-    />
-  );
-};
-
-const MoviesPosterandInfo = (data, navigation) => {
-  return (
-    <View style={{ marginHorizontal: 16, marginVertical: 8 }}>
-      <TouchableWithoutFeedback
-        onPress={() => navigation.navigate("MovieDetail", { id: data.id })}
-        style={{ flexDirection: "row" }}
-      >
-        <MoviePoster item={data} height={150} width={100} navigation={navigation} />
-        <View style={{ margin: 16, justifyContent: "center", marginBottom: 24, flex: 1 }}>
-          <Text style={{ fontFamily: "Montserrat-Bold", fontSize: 16, marginBottom: 10 }} numberOfLines={2}>
-            {data.title}
-          </Text>
-          <MovieRating rating={data.vote_average} textColor={black} />
-          <Text style={{ fontFamily: "Montserrat-Light", fontSize: 12, marginTop: 10, width: "75%" }}>
-            {Genres(data.genre_ids)}
-          </Text>
-        </View>
-      </TouchableWithoutFeedback>
-    </View>
-  );
-};
-
-const Genres = (genreId = []) => {
-  const text = genreId.map((item) => genres[item.toString()].name);
-  return text.join(", ");
-};
-
 export default SearchScreen;
+
+SearchScreen.propTypes = {
+  route: PropTypes.any,
+  navigation: PropTypes.object,
+};
+
+const _styles = StyleSheet.create({
+  headerTitle: {
+    fontFamily: "Montserrat-Bold",
+    fontSize: 20,
+    flex: 8,
+    textAlign: "center",
+    alignSelf: "center",
+  },
+
+  titleBar: {
+    width: 40,
+    height: 5,
+    backgroundColor: orange,
+    marginTop: 4,
+    marginBottom: 12,
+    alignSelf: "center",
+  },
+
+  subTitle: {
+    margin: 16,
+    marginTop: 5,
+    fontFamily: "Montserrat-Regular",
+    fontSize: 12,
+    textAlign: "center",
+    alignSelf: "center",
+    width: "70%",
+  },
+
+  searchContainer: {
+    marginHorizontal: 16,
+    backgroundColor: lightGray,
+    borderRadius: 24,
+    flexDirection: "row",
+  },
+
+  searchInput: {
+    fontFamily: "Montserrat-Medium",
+    fontSize: 14,
+    flex: 1,
+    marginRight: 12,
+  },
+});

@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import { View, Text } from "react-native";
 import { white } from "../../helper/Color";
 
@@ -12,3 +13,7 @@ const MovieTitle = ({ title }) => {
 };
 
 export default MovieTitle;
+
+MovieTitle.propTypes = {
+  title: PropTypes.string,
+};

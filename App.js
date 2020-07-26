@@ -14,7 +14,9 @@ import MovieDetailScreen from "./src/screen/MovieDetailScreen";
 import SearchScreen from "./src/screen/SearchScreen";
 import HomeDrawerNavigator from "./src/navigator/HomeDrawerNavigator";
 
-import { white } from "./src/helper/Color";
+import TVDetailScreen from "./src/screen/TVDetailScreen";
+import WebViewScreen from "./src/screen/WebViewScreen";
+import MovieListScreen from "./src/screen/MovieListScreen";
 
 const Stack = createStackNavigator();
 
@@ -26,26 +28,22 @@ const AppNavigator = () => {
         headerTitle: false,
         headerTransparent: true,
         headerBackTitleVisible: false,
+        headerShown: false,
       }}
     >
       <Stack.Screen name="Home" component={HomeDrawerNavigator} options={{ headerShown: false }} />
-      <Stack.Screen
-        name="MovieDetail"
-        component={MovieDetailScreen}
-        options={{
-          headerBackTitleVisible: false,
-          headerTintColor: white,
-        }}
-      />
+      <Stack.Screen name="MovieDetail" component={MovieDetailScreen} />
+      <Stack.Screen name="TVDetail" component={TVDetailScreen} />
       <Stack.Screen
         name="Search"
         component={SearchScreen}
         options={{
-          headerShown: false,
           cardStyleInterpolator: CardStyleInterpolators.forVerticalIOS,
           gestureDirection: "vertical",
         }}
       />
+      <Stack.Screen name="Webview" component={WebViewScreen} />
+      <Stack.Screen name="Movielist" component={MovieListScreen} />
     </Stack.Navigator>
   );
 };

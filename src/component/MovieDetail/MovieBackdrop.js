@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import { Dimensions, View, StyleSheet } from "react-native";
 import FastImage from "react-native-fast-image";
 import LinearGradient from "react-native-linear-gradient";
@@ -20,6 +21,11 @@ const MovieBackdrop = ({ backdrop, children }) => {
 };
 
 export default MovieBackdrop;
+
+MovieBackdrop.propTypes = {
+  backdrop: PropTypes.string,
+  children: PropTypes.any,
+};
 
 const _styles = StyleSheet.create({
   container: {

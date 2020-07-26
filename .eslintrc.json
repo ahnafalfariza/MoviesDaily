@@ -37,7 +37,7 @@
     ]
   },
   "rules": {
-    "react/display-name": [1, { "ignoreTranspilerName": false }],
-    "react/prop-types": "off"
+    "react/display-name": [1, { "ignoreTranspilerName": false }]
+    // "react/prop-types": "off"
   }
 }

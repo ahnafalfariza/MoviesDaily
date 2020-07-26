@@ -21,12 +21,15 @@
     "react-native": "0.63.2",
     "react-native-fast-image": "^8.3.2",
     "react-native-gesture-handler": "^1.7.0",
+    "react-native-image-zoom-viewer": "^3.0.1",
     "react-native-linear-gradient": "^2.5.6",
+    "react-native-modal": "^11.5.6",
     "react-native-reanimated": "^1.10.1",
     "react-native-safe-area-context": "^3.1.1",
     "react-native-screens": "^2.9.0",
     "react-native-status-bar-height": "^2.5.0",
-    "react-native-vector-icons": "^7.0.0"
+    "react-native-vector-icons": "^7.0.0",
+    "react-native-webview": "^10.3.2"
   },
   "devDependencies": {
     "@babel/core": "^7.10.5",
