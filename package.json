@@ -11,6 +11,7 @@
     "lint": "./node_modules/.bin/eslint --ignore-path .gitignore . --fix"
   },
   "dependencies": {
+    "@react-native-community/blur": "^3.6.0",
     "@react-native-community/masked-view": "^0.1.10",
     "@react-native-community/netinfo": "^5.9.5",
     "@react-navigation/drawer": "^5.8.6",

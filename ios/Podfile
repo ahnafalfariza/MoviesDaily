@@ -12,6 +12,8 @@ target 'MoviesDaily' do
 
   pod 'RNVectorIcons', :path => '../node_modules/react-native-vector-icons'
 
+  pod 'react-native-blur', :path => '../node_modules/@react-native-community/blur'
+
   target 'MoviesDailyTests' do
     inherit! :complete
     # Pods for testing
