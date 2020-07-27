@@ -18,6 +18,8 @@ import WebViewScreen from "./src/screen/WebViewScreen";
 import MovieListScreen from "./src/screen/MovieListScreen";
 
 import OfflineNotice from "./src/component/OfflineNotice";
+import MovieSeasonScreen from "./src/screen/MovieSeasonScreen";
+
 const Stack = createStackNavigator();
 
 const AppNavigator = () => {
@@ -44,6 +46,7 @@ const AppNavigator = () => {
       />
       <Stack.Screen name="Webview" component={WebViewScreen} />
       <Stack.Screen name="Movielist" component={MovieListScreen} />
+      <Stack.Screen name="Movieseason" component={MovieSeasonScreen} />
     </Stack.Navigator>
   );
 };

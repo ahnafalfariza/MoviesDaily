@@ -71,8 +71,8 @@ class TVDetailScreen extends Component {
               <MovieGenres genre={movieData.genres} />
               <MovieOverview overview={movieData.overview} />
               <MovieCast credit={credit} />
-              <MovieImages images={images} />
               <MovieSeason seasonData={movieData.seasons} navigation={navigation} movieid={movieData.id} />
+              <MovieImages images={images} />
               <MovieRecommendations recommendations={recommendations} navigation={navigation} />
             </View>
           )}
