@@ -57,24 +57,28 @@ export const requestTVShowScreen = (callback, err) => {
     .catch(err);
 };
 
-export const requestMovieDetailScreen = (id) => {
+export const requestMovieDetailScreen = (id, callback) => {
   return Promise.all([
     request(getMovieDetailUrl(id)),
     request(getMovieCreditUrl(id)),
     request(getMovieImageUrl(id)),
     request(getMovieVideoUrl(id)),
     request(getMovieRecommendationsUrl(id)),
-  ]).catch((error) => console.log(error));
+  ])
+    .then((values) => callback(values))
+    .catch((error) => console.log(error));
 };
 
-export const requestTvDetailScreen = (id) => {
+export const requestTvDetailScreen = (id, callback) => {
   return Promise.all([
     request(getTvShowDetailUrl(id)),
     request(getTvShowCreditUrl(id)),
     request(getTvShowImageUrl(id)),
     request(getTvShowVideoUrl(id)),
     request(getTvShowRecommendationsUrl(id)),
-  ]).catch((error) => console.log(error));
+  ])
+    .then((values) => callback(values))
+    .catch((error) => console.log(error));
 };
 
 export const requestSearchMovie = async (keyword) => {
