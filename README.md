@@ -16,14 +16,7 @@ Developed as a personal project, created using [React Native](https://facebook.g
 
 ## Screenshot
 
-<img src="img/moviehome.png" width="200" />
-<img src="img/tvhome.png" width="200" />
-<img src="img/moviedetail1.png" width="200" />
-<img src="img/moviedetail2.png" width="200" />
-<img src="img/movielist.png" width="200" />
-<img src="img/moviesearchscreen.png" width="200" />
-<img src="img/tvdetail.png" width="200" />
-<img src="img/tvseason.png" width="200" />
+<img src="img/moviehome.png" width="200" /> <img src="img/tvhome.png" width="200" /> <img src="img/moviedetail1.png" width="200" /> <img src="img/moviedetail2.png" width="200" /> <img src="img/movielist.png" width="200" /> <img src="img/moviesearchscreen.png" width="200" /> <img src="img/tvdetail.png" width="200" /> <img src="img/tvseason.png" width="200" />
 
 ## Features
 
