@@ -15,6 +15,7 @@ import MoviePlayButton from "../component/MovieDetail/MoviePlayButton";
 import MovieTitle from "../component/MovieDetail/MovieTitle";
 import { black, white } from "../helper/Color";
 import BackIcon from "../component/Utils/BackIcon";
+import MovieSeason from "../component/MovieDetail/MovieSeason";
 
 class TVDetailScreen extends Component {
   constructor(props) {
@@ -36,7 +37,12 @@ class TVDetailScreen extends Component {
   requestInfoDetail = async () => {
     const { id } = this.props.route.params;
     console.log("tv id", id);
-    const [movieData, credit, images, videos, recommendations] = await requestTvDetailScreen(id);
+
+    await requestTvDetailScreen(id, this.callbackRequest);
+  };
+
+  callbackRequest = (response) => {
+    const [movieData, credit, images, videos, recommendations] = response;
     this.setState({ movieData, credit, images, videos, recommendations, isLoaded: true });
   };
 
@@ -65,6 +71,7 @@ class TVDetailScreen extends Component {
               <MovieGenres genre={movieData.genres} />
               <MovieOverview overview={movieData.overview} />
               <MovieCast credit={credit} />
+              <MovieSeason seasonData={movieData.seasons} navigation={navigation} movieid={movieData.id} />
               <MovieImages images={images} />
               <MovieRecommendations recommendations={recommendations} navigation={navigation} />
             </View>
@@ -78,8 +85,8 @@ class TVDetailScreen extends Component {
   render() {
     const { navigation } = this.props;
     return (
-      <View>
-        <ScrollView style={Styles.scrollview}>
+      <View style={{ flex: 1, backgroundColor: white }}>
+        <ScrollView style={Styles.scrollview} contentContainerStyle={{ flexGrow: 1 }} bounces={false}>
           <StatusBar translucent backgroundColor={"transparent"} />
           {this.movieInfoGeneral()}
           {this.movieInfoDetail()}

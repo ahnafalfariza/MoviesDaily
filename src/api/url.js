@@ -40,6 +40,9 @@ export const getTvShowImageUrl = (id) => `${ROOT_URL}/tv/${id}/images?${queryStr
 export const getTvShowVideoUrl = (id) => `${ROOT_URL}/tv/${id}/videos?${queryString({ api_key: API_KEY })}`;
 export const getTvShowRecommendationsUrl = (id) => `${ROOT_URL}/tv/${id}/recommendations?${queryString(defaultQuery)}`;
 
+export const getTvShowSeasonUrl = (id, season_number) =>
+  `${ROOT_URL}/tv/${id}/season/${season_number}?${queryString(defaultQuery)}`;
+
 export const getSearchMovieUrl = (keyword) =>
   `${ROOT_URL}/search/movie?${queryString({ ...defaultQuery, ...{ query: keyword } })}`;
 export const getSearchTvUrl = (keyword) =>

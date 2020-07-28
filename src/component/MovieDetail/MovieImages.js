@@ -10,7 +10,7 @@ import { Styles } from "./Styles";
 class MovieImages extends Component {
   constructor(props) {
     super(props);
-    this.images = this.props.images.backdrops.slice(0, 7);
+    this.images = this.props.images.backdrops;
     this.state = {
       isShowModal: false,
       imageModalIndex: 0,
@@ -47,7 +47,7 @@ class MovieImages extends Component {
     if (this.images.length === 0) return null;
     return (
       <View>
-        <Text style={Styles.titleText}>Image</Text>
+        <Text style={Styles.titleText}>Images</Text>
         <FlatList
           keyExtractor={(item) => item.file_path}
           data={this.images}

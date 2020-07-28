@@ -36,7 +36,12 @@ class MovieDetailScreen extends Component {
   requestInfoDetail = async () => {
     const { id } = this.props.route.params;
     console.log("movie id", id);
-    const [movieData, credit, images, videos, recommendations] = await requestMovieDetailScreen(id);
+
+    await requestMovieDetailScreen(id, this.callbackRequest);
+  };
+
+  callbackRequest = (response) => {
+    const [movieData, credit, images, videos, recommendations] = response;
     this.setState({ movieData, credit, images, videos, recommendations, isLoaded: true });
   };
 
@@ -78,8 +83,8 @@ class MovieDetailScreen extends Component {
   render() {
     const { navigation } = this.props;
     return (
-      <View>
-        <ScrollView style={Styles.scrollview}>
+      <View style={{ flex: 1, backgroundColor: white }}>
+        <ScrollView style={Styles.scrollview} contentContainerStyle={{ flexGrow: 1 }} bounces={false}>
           <StatusBar translucent backgroundColor={"transparent"} />
           {this.movieInfoGeneral()}
           {this.movieInfoDetail()}

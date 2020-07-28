@@ -35,7 +35,7 @@ const Recommendations = (data, navigation, route) => {
         <View style={[Styles.imagePlaceholder, Styles.movieRecommImages]}>
           <FastImage source={imageUrl} style={Styles.movieRecommImages} />
         </View>
-        <Text style={Styles.bottomText} numberOfLines={2}>
+        <Text style={[Styles.bottomText, { width: 100 }]} numberOfLines={2}>
           {data.title}
           {data.name}
         </Text>

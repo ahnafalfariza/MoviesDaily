@@ -36,6 +36,15 @@ MoviesRow.propTypes = {
   type: PropTypes.oneOf(["tv", "movie"]),
 };
 
+MoviesRow.defaultProps = {
+  data: [
+    { id: 1, data: "1" },
+    { id: 2, data: "2" },
+    { id: 3, data: "3" },
+    { id: 4, data: "4" },
+  ],
+};
+
 const Styles = StyleSheet.create({
   text: {
     fontSize: normalize(15),

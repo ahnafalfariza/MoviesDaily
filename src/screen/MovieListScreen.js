@@ -21,7 +21,9 @@ class MovieListScreen extends Component {
     const fetchUrl = fetchFunctionListScreen(type, title);
     const response = await fetchUrl(page);
 
-    this.setState((prevState) => ({ page: prevState.page + 1, data: [...prevState.data, ...response.results] }));
+    if (response) {
+      this.setState((prevState) => ({ page: prevState.page + 1, data: [...prevState.data, ...response.results] }));
+    }
   };
 
   renderTitle = () => {
@@ -73,7 +75,6 @@ const _styles = StyleSheet.create({
     height: 5,
     backgroundColor: orange,
     marginTop: 4,
-    marginBottom: 12,
     alignSelf: "center",
   },
 

@@ -45,7 +45,7 @@ class SearchScreen extends Component {
         <View style={{ alignSelf: "center", flex: 1 }}>
           <TextInput
             style={_styles.searchInput}
-            placeholder={"Avengers: End Gamee"}
+            placeholder={"Avengers: End Game"}
             onChangeText={(text) => this.requestMovie(text)}
             returnKeyType={"search"}
             autoCorrect={false}
@@ -82,7 +82,7 @@ class SearchScreen extends Component {
     const requestSearch = type === "tv" ? requestSearchTv : requestSearchMovie;
     if (text !== "") {
       const search = await requestSearch(text);
-      this.setState({ search });
+      if (search) this.setState({ search });
     }
   };
 }

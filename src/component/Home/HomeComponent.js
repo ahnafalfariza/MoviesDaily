@@ -48,7 +48,10 @@ class HomeComponent extends Component {
   renderMoviesComponent = () => {
     const { isRefreshing } = this.state;
     return (
-      <ScrollView refreshControl={<RefreshControl refreshing={isRefreshing} onRefresh={this.onRefresh} />}>
+      <ScrollView
+        refreshControl={<RefreshControl refreshing={isRefreshing} onRefresh={this.onRefresh} />}
+        showsVerticalScrollIndicator={false}
+      >
         {this.renderTitle()}
         {this.renderMovieRow()}
       </ScrollView>
