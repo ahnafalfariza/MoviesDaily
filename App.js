@@ -6,9 +6,10 @@
  * @flow strict-local
  */
 
-import React from "react";
+import React, { useEffect } from "react";
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator, CardStyleInterpolators } from "@react-navigation/stack";
+import SplashScreen from "react-native-splash-screen";
 
 import MovieDetailScreen from "./src/screen/MovieDetailScreen";
 import SearchScreen from "./src/screen/SearchScreen";
@@ -52,6 +53,10 @@ const AppNavigator = () => {
 };
 
 const App = () => {
+  useEffect(() => {
+    SplashScreen.hide();
+  }, []);
+
   return (
     <NavigationContainer>
       <AppNavigator />
