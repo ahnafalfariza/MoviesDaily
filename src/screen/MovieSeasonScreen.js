@@ -97,7 +97,7 @@ class MovieSeasonScreen extends Component {
             style={{
               fontFamily: season_number === index ? "Montserrat-Bold" : "Montserrat-Regular",
               fontSize: season_number === index ? 24 : 16,
-              color: white,
+              color: season_number === index ? orange : white,
               textAlign: "center",
             }}
           >
@@ -169,7 +169,6 @@ class MovieSeasonScreen extends Component {
         animationIn={"fadeIn"}
         animationOut={"fadeOut"}
         style={{ height: "50%", margin: 0 }}
-        backdropOpacity={0}
         onBackButtonPress={this.toggleModal}
         scrollTo={this.handleScrollTo}
         scrollOffset={this.state.scrollOffset}
