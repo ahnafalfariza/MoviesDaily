@@ -13,7 +13,7 @@
   "dependencies": {
     "@react-native-community/blur": "^3.6.0",
     "@react-native-community/masked-view": "^0.1.10",
-    "@react-native-community/netinfo": "^5.9.5",
+    "@react-native-community/netinfo": "^5.9.7",
     "@react-navigation/drawer": "^5.8.6",
     "@react-navigation/native": "^5.7.1",
     "@react-navigation/stack": "^5.7.1",
