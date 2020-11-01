@@ -39,7 +39,7 @@
     "@babel/runtime": "^7.10.5",
     "babel-jest": "^26.1.0",
     "eslint": "^7.5.0",
-    "eslint-plugin-react": "^7.20.3",
+    "eslint-plugin-react": "^7.21.5",
     "husky": "^4.2.5",
     "jest": "^26.1.0",
     "metro-react-native-babel-preset": "^0.61.0",
