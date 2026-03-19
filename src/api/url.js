@@ -1,6 +1,8 @@
+import { TMDB_API_KEY } from "@env";
+
 const ROOT_URL = "https://api.themoviedb.org/3";
 const IMAGE_URL = "https://image.tmdb.org/t/p/";
-const API_KEY = "1abb3e68d878be1155d781ce812f80a8";
+const API_KEY = TMDB_API_KEY;
 
 const defaultQuery = {
   api_key: API_KEY,

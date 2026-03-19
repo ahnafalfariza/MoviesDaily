@@ -43,6 +43,7 @@
     "husky": "^4.2.5",
     "jest": "^26.1.0",
     "metro-react-native-babel-preset": "^0.61.0",
+    "react-native-dotenv": "^3.4.11",
     "react-test-renderer": "16.13.1"
   },
   "jest": {
