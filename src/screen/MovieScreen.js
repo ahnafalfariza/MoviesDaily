@@ -1,41 +1,29 @@
-import React, { Component } from "react";
-import PropTypes from "prop-types";
+import React, { useState, useEffect, useCallback } from "react";
 
 import HomeComponent from "../component/Home/HomeComponent";
 import { requestMovieScreen as RequestMovieApi } from "../api/api";
 import { MovieTypes } from "../helper/Types";
 
-class MovieScreen extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      moviesData: [],
-    };
-  }
+const MovieScreen = ({ navigation }) => {
+  const [moviesData, setMoviesData] = useState([]);
 
-  componentDidMount() {
-    this.requestMovieScreen();
-  }
+  const requestMovieScreen = useCallback(async () => {
+    await RequestMovieApi((data) => setMoviesData(data));
+  }, []);
 
-  requestMovieScreen = async () => {
-    await RequestMovieApi((data) => this.setState({ moviesData: data }));
-  };
+  useEffect(() => {
+    requestMovieScreen();
+  }, [requestMovieScreen]);
 
-  render() {
-    return (
-      <HomeComponent
-        type={"movie"}
-        subTitle={MovieTypes}
-        navigation={this.props.navigation}
-        data={this.state.moviesData}
-        onRefresh={this.requestMovieScreen}
-      />
-    );
-  }
-}
+  return (
+    <HomeComponent
+      type="movie"
+      subTitle={MovieTypes}
+      navigation={navigation}
+      data={moviesData}
+      onRefresh={requestMovieScreen}
+    />
+  );
+};
 
 export default MovieScreen;
-
-MovieScreen.propTypes = {
-  navigation: PropTypes.object,
-};

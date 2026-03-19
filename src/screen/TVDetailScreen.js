@@ -1,5 +1,4 @@
-import React, { Component } from "react";
-import PropTypes from "prop-types";
+import React, { useState, useEffect } from "react";
 import { View, StatusBar, ScrollView, StyleSheet } from "react-native";
 
 import { requestTvDetailScreen } from "../api/api";
@@ -17,92 +16,61 @@ import { black, white } from "../helper/Color";
 import BackIcon from "../component/Utils/BackIcon";
 import MovieSeason from "../component/MovieDetail/MovieSeason";
 
-class TVDetailScreen extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      movieData: {},
-      credit: {},
-      images: {},
-      videos: {},
-      recommendations: {},
-      isLoaded: false,
-    };
-  }
+const TVDetailScreen = ({ route, navigation }) => {
+  const [movieData, setMovieData] = useState({});
+  const [credit, setCredit] = useState({});
+  const [images, setImages] = useState({});
+  const [videos, setVideos] = useState({});
+  const [recommendations, setRecommendations] = useState({});
+  const [isLoaded, setIsLoaded] = useState(false);
 
-  componentDidMount() {
-    this.requestInfoDetail();
-  }
+  useEffect(() => {
+    const { id } = route.params;
+    requestTvDetailScreen(id, (response) => {
+      const [movieData, credit, images, videos, recommendations] = response;
+      setMovieData(movieData);
+      setCredit(credit);
+      setImages(images);
+      setVideos(videos);
+      setRecommendations(recommendations);
+      setIsLoaded(true);
+    });
+  }, [route.params]);
 
-  requestInfoDetail = async () => {
-    const { id } = this.props.route.params;
-    console.log("tv id", id);
-
-    await requestTvDetailScreen(id, this.callbackRequest);
-  };
-
-  callbackRequest = (response) => {
-    const [movieData, credit, images, videos, recommendations] = response;
-    this.setState({ movieData, credit, images, videos, recommendations, isLoaded: true });
-  };
-
-  movieInfoGeneral = () => {
-    const { movieData, isLoaded } = this.state;
-    return (
-      <MovieBackdrop backdrop={movieData.backdrop_path}>
-        {isLoaded && (
-          <View>
-            <MovieTitle title={movieData.name} />
-            <MovieRating rating={movieData.vote_average} />
-          </View>
-        )}
-      </MovieBackdrop>
-    );
-  };
-
-  movieInfoDetail = () => {
-    const { movieData, credit, isLoaded, images, recommendations, videos } = this.state;
-    const { navigation } = this.props;
-    return (
-      <View style={Styles.movieDetailWrapper}>
-        <View style={Styles.movieDetail}>
+  return (
+    <View style={{ flex: 1, backgroundColor: white }}>
+      <ScrollView style={Styles.scrollview} contentContainerStyle={{ flexGrow: 1 }} bounces={false}>
+        <StatusBar translucent backgroundColor="transparent" />
+        <MovieBackdrop backdrop={movieData.backdrop_path}>
           {isLoaded && (
             <View>
-              <MovieGenres genre={movieData.genres} />
-              <MovieOverview overview={movieData.overview} />
-              <MovieCast credit={credit} />
-              <MovieSeason seasonData={movieData.seasons} navigation={navigation} movieid={movieData.id} />
-              <MovieImages images={images} />
-              <MovieRecommendations recommendations={recommendations} navigation={navigation} />
+              <MovieTitle title={movieData.name} />
+              <MovieRating rating={movieData.vote_average} />
             </View>
           )}
+        </MovieBackdrop>
+        <View style={Styles.movieDetailWrapper}>
+          <View style={Styles.movieDetail}>
+            {isLoaded && (
+              <View>
+                <MovieGenres genre={movieData.genres} />
+                <MovieOverview overview={movieData.overview} />
+                <MovieCast credit={credit} />
+                <MovieSeason seasonData={movieData.seasons} navigation={navigation} movieid={movieData.id} />
+                <MovieImages images={images} />
+                <MovieRecommendations recommendations={recommendations} navigation={navigation} />
+              </View>
+            )}
+          </View>
+          <MoviePlayButton videoData={videos} navigation={navigation} />
         </View>
-        <MoviePlayButton videoData={videos} navigation={navigation} />
-      </View>
-    );
-  };
-
-  render() {
-    const { navigation } = this.props;
-    return (
-      <View style={{ flex: 1, backgroundColor: white }}>
-        <ScrollView style={Styles.scrollview} contentContainerStyle={{ flexGrow: 1 }} bounces={false}>
-          <StatusBar translucent backgroundColor={"transparent"} />
-          {this.movieInfoGeneral()}
-          {this.movieInfoDetail()}
-        </ScrollView>
-        <BackIcon navigation={navigation} style={{ marginLeft: 5, position: "absolute", top: 40 }} color={white} />
-      </View>
-    );
-  }
-}
+      </ScrollView>
+      <BackIcon navigation={navigation} style={{ marginLeft: 5, position: "absolute", top: 40 }} color={white} />
+    </View>
+  );
+};
 
 export default TVDetailScreen;
-
-TVDetailScreen.propTypes = {
-  route: PropTypes.any,
-  navigation: PropTypes.object,
-};
 
 const Styles = StyleSheet.create({
   scrollview: {

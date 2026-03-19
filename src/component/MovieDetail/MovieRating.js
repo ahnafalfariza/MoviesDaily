@@ -4,9 +4,9 @@ import { View, Text, StyleSheet } from "react-native";
 
 import { white, yellow } from "../../helper/Color";
 
-import Icon from "react-native-vector-icons/FontAwesome";
+import { FontAwesome } from "@expo/vector-icons";
 
-const MovieRating = ({ rating, style, textColor }) => {
+const MovieRating = ({ rating, style, textColor = white }) => {
   const Rating = () => {
     return (
       <View style={{ flexDirection: "row" }}>
@@ -20,7 +20,7 @@ const MovieRating = ({ rating, style, textColor }) => {
   const Star = ({ color, rating = 10 }) => {
     const items = [];
     for (let i = 1; i <= 5; i++) {
-      items.push(<Icon key={i} name="star" size={15} color={color} />);
+      items.push(<FontAwesome key={i} name="star" size={15} color={color} />);
     }
     return <View style={[_styles.star, { width: 75 * (rating / 10) }]}>{items}</View>;
   };
@@ -34,11 +34,6 @@ MovieRating.propTypes = {
   rating: PropTypes.number,
   style: PropTypes.object,
   textColor: PropTypes.string,
-  color: PropTypes.string,
-};
-
-MovieRating.defaultProps = {
-  textColor: white,
 };
 
 const _styles = StyleSheet.create({

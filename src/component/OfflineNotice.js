@@ -1,37 +1,32 @@
-import React, { PureComponent } from "react";
+import React, { useState, useEffect } from "react";
 import { View, Text, Dimensions, StyleSheet } from "react-native";
 import NetInfo from "@react-native-community/netinfo";
 
 const { width } = Dimensions.get("window");
-function MiniOfflineSign() {
+
+const MiniOfflineSign = () => {
   return (
     <View style={styles.offlineContainer}>
       <Text style={styles.offlineText}>No Internet Connection</Text>
     </View>
   );
-}
-class OfflineNotice extends PureComponent {
-  state = {
-    isConnected: true,
-  };
+};
 
-  componentDidMount() {
-    this.subscription = NetInfo.addEventListener(this.handleConnectivityChange);
-  }
+const OfflineNotice = () => {
+  const [isConnected, setIsConnected] = useState(true);
 
-  componentWillUnmount() {
-    this.subscription();
-  }
+  useEffect(() => {
+    const unsubscribe = NetInfo.addEventListener((network) => {
+      setIsConnected(network.isConnected);
+    });
 
-  handleConnectivityChange = (network) => {
-    this.setState({ isConnected: network.isConnected });
-  };
+    return () => unsubscribe();
+  }, []);
 
-  render() {
-    if (!this.state.isConnected) return <MiniOfflineSign />;
-    return null;
-  }
-}
+  if (!isConnected) return <MiniOfflineSign />;
+  return null;
+};
+
 const styles = StyleSheet.create({
   offlineContainer: {
     backgroundColor: "#b52424",
@@ -50,4 +45,5 @@ const styles = StyleSheet.create({
     fontFamily: "Montserrat-Regular",
   },
 });
+
 export default OfflineNotice;

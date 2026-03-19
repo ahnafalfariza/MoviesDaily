@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { useState, useCallback } from "react";
 import PropTypes, { string, object } from "prop-types";
 import { ScrollView, Text, View, StyleSheet, RefreshControl } from "react-native";
 
@@ -8,65 +8,35 @@ import HomeHeader from "./HomeHeader";
 import { normalize } from "../../helper/FontSize";
 import { orange } from "../../helper/Color";
 
-class HomeComponent extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      isRefreshing: false,
-    };
-  }
+const HomeComponent = ({ navigation, type, data, onRefresh, subTitle }) => {
+  const [isRefreshing, setIsRefreshing] = useState(false);
 
-  onRefresh = async () => {
-    this.setState({ isRefreshing: true });
-    await this.props.onRefresh();
-    this.setState({ isRefreshing: false });
-  };
+  const handleRefresh = useCallback(async () => {
+    setIsRefreshing(true);
+    await onRefresh();
+    setIsRefreshing(false);
+  }, [onRefresh]);
 
-  renderHeader = () => {
-    const { navigation, type } = this.props;
-    return <HomeHeader navigation={navigation} type={type} />;
-  };
+  const title = type === "tv" ? "TV Shows" : "Movies";
 
-  renderTitle = () => {
-    const { type } = this.props;
-    const title = type === "tv" ? "TV Shows" : "Movies";
-    return (
-      <View>
-        <Text style={Styles.screenTitle}>{title}</Text>
-        <View style={Styles.titleBar} />
-      </View>
-    );
-  };
-
-  renderMovieRow = () => {
-    const { navigation, data, subTitle, type } = this.props;
-    return subTitle.map((title, index) => (
-      <MoviesRow key={index} data={{ ...data[index] }.results} title={title} navigation={navigation} type={type} />
-    ));
-  };
-
-  renderMoviesComponent = () => {
-    const { isRefreshing } = this.state;
-    return (
+  return (
+    <Screen>
+      <HomeHeader navigation={navigation} type={type} />
       <ScrollView
-        refreshControl={<RefreshControl refreshing={isRefreshing} onRefresh={this.onRefresh} />}
+        refreshControl={<RefreshControl refreshing={isRefreshing} onRefresh={handleRefresh} />}
         showsVerticalScrollIndicator={false}
       >
-        {this.renderTitle()}
-        {this.renderMovieRow()}
+        <View>
+          <Text style={Styles.screenTitle}>{title}</Text>
+          <View style={Styles.titleBar} />
+        </View>
+        {subTitle.map((t, index) => (
+          <MoviesRow key={index} data={{ ...data[index] }.results} title={t} navigation={navigation} type={type} />
+        ))}
       </ScrollView>
-    );
-  };
-
-  render() {
-    return (
-      <Screen>
-        {this.renderHeader()}
-        {this.renderMoviesComponent()}
-      </Screen>
-    );
-  }
-}
+    </Screen>
+  );
+};
 
 export default HomeComponent;
 

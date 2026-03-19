@@ -1,12 +1,12 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { View, StyleSheet, TouchableWithoutFeedback } from "react-native";
-import FastImage from "react-native-fast-image";
+import { Image } from "expo-image";
 
 import { getImageUrl } from "../api/url";
 import { gray } from "../helper/Color";
 
-const MoviePoster = ({ item, navigation, height, width, type }) => {
+const MoviePoster = ({ item, navigation, height = 180, width = 120, type }) => {
   return (
     <TouchableWithoutFeedback
       onPress={() => {
@@ -18,7 +18,7 @@ const MoviePoster = ({ item, navigation, height, width, type }) => {
       }}
     >
       <View style={styles.imageContainer}>
-        <FastImage style={{ height, width }} resizeMode="cover" source={getImageUrl(item.poster_path)} />
+        <Image style={{ height, width }} contentFit="cover" source={getImageUrl(item.poster_path)} />
       </View>
     </TouchableWithoutFeedback>
   );
@@ -32,11 +32,6 @@ MoviePoster.propTypes = {
   width: PropTypes.number,
   navigation: PropTypes.any,
   type: PropTypes.oneOf(["tv", "movie"]),
-};
-
-MoviePoster.defaultProps = {
-  height: 180,
-  width: 120,
 };
 
 const styles = StyleSheet.create({

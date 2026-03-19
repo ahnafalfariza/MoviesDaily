@@ -1,45 +1,43 @@
-import React, { Component } from "react";
+import React, { useState } from "react";
 import PropTypes from "prop-types";
 import Modal from "react-native-modal";
 import { View, StyleSheet, TouchableWithoutFeedback, Text } from "react-native";
 
-import Icon from "react-native-vector-icons/FontAwesome5";
+import { FontAwesome5 } from "@expo/vector-icons";
 
 import { orange, white } from "../../helper/Color";
 
-class MoviePlayButton extends Component {
-  state = {
-    isModalShown: false,
+const MoviePlayButton = ({ videoData, navigation }) => {
+  const [isModalShown, setIsModalShown] = useState(false);
+
+  const toggleModal = () => {
+    setIsModalShown((prev) => !prev);
   };
 
-  toggleModal = () => {
-    this.setState((prevState) => ({ isModalShown: !prevState.isModalShown }));
+  const onPressPlay = (key) => {
+    toggleModal();
+    navigation.navigate("Webview", { id: key });
   };
 
-  renderPlayButton = () => {
+  const renderPlayButton = () => {
     return (
-      <TouchableWithoutFeedback onPress={this.toggleModal}>
+      <TouchableWithoutFeedback onPress={toggleModal}>
         <View style={_styles.wrapper}>
-          <Icon name={"play"} size={20} color={white} style={_styles.icon} />
+          <FontAwesome5 name="play" size={20} color={white} style={_styles.icon} />
         </View>
       </TouchableWithoutFeedback>
     );
   };
 
-  onPressPlay = (key) => {
-    this.toggleModal();
-    this.props.navigation.navigate("Webview", { id: key });
-  };
-
-  videoItem = () => {
-    const results = this.props.videoData.results.slice(0, 7);
+  const renderVideoItem = () => {
+    const results = videoData.results.slice(0, 7);
     return results.map((item) => (
       <View key={item.key} style={{ marginBottom: 8, flexDirection: "row", justifyContent: "space-between" }}>
         <View style={{ width: "80%" }}>
           <Text style={{ fontFamily: "Montserrat-Regular", fontSize: 14 }}>{item.name}</Text>
           <Text style={{ fontFamily: "Montserrat-Light", fontSize: 12 }}>{item.type}</Text>
         </View>
-        <TouchableWithoutFeedback onPress={() => this.onPressPlay(item.key)}>
+        <TouchableWithoutFeedback onPress={() => onPressPlay(item.key)}>
           <View style={{ alignSelf: "flex-start", borderRadius: 6, overflow: "hidden" }}>
             <Text style={_styles.playText}>Play</Text>
           </View>
@@ -48,38 +46,36 @@ class MoviePlayButton extends Component {
     ));
   };
 
-  renderModal = () => {
-    const { results = [] } = this.props.videoData;
+  const renderModal = () => {
+    const { results = [] } = videoData;
 
-    if (this.state.isModalShown && results.length !== 0) {
+    if (isModalShown && results.length !== 0) {
       return (
         <Modal
-          isVisible={this.state.isModalShown}
+          isVisible={isModalShown}
           style={{ justifyContent: "flex-end", margin: 0 }}
           swipeDirection={"down"}
-          onBackButtonPress={this.toggleModal}
-          onBackdropPress={this.toggleModal}
-          onSwipeComplete={this.toggleModal}
+          onBackButtonPress={toggleModal}
+          onBackdropPress={toggleModal}
+          onSwipeComplete={toggleModal}
         >
           <View style={_styles.modalStyle}>
             <View style={_styles.bar} />
             <Text style={_styles.videoText}>Videos</Text>
-            {this.videoItem()}
+            {renderVideoItem()}
           </View>
         </Modal>
       );
     }
   };
 
-  render() {
-    return (
-      <>
-        {this.renderPlayButton()}
-        {this.renderModal()}
-      </>
-    );
-  }
-}
+  return (
+    <>
+      {renderPlayButton()}
+      {renderModal()}
+    </>
+  );
+};
 
 export default MoviePlayButton;
 

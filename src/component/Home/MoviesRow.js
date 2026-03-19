@@ -1,19 +1,19 @@
 import React from "react";
 import PropTypes, { object } from "prop-types";
-import { View, Text, FlatList, StyleSheet, TouchableNativeFeedback } from "react-native";
+import { View, Text, FlatList, StyleSheet, Pressable } from "react-native";
 
 import MoviePoster from "../MoviePoster";
 import { normalize } from "../../helper/FontSize";
 import { orange } from "../../helper/Color";
 
-const MoviesRow = ({ data, title, navigation, type }) => {
+const MoviesRow = ({ data = [], title, navigation, type }) => {
   return (
     <View>
       <View style={{ flexDirection: "row", justifyContent: "space-between" }}>
         <Text style={Styles.text}>{title}</Text>
-        <TouchableNativeFeedback onPress={() => navigation.navigate("Movielist", { data, type, title })}>
+        <Pressable onPress={() => navigation.navigate("Movielist", { data, type, title })}>
           <Text style={Styles.textMore}>More</Text>
-        </TouchableNativeFeedback>
+        </Pressable>
       </View>
       <FlatList
         data={data}
@@ -34,15 +34,6 @@ MoviesRow.propTypes = {
   title: PropTypes.string,
   navigation: PropTypes.object,
   type: PropTypes.oneOf(["tv", "movie"]),
-};
-
-MoviesRow.defaultProps = {
-  data: [
-    { id: 1, data: "1" },
-    { id: 2, data: "2" },
-    { id: 3, data: "3" },
-    { id: 4, data: "4" },
-  ],
 };
 
 const Styles = StyleSheet.create({
