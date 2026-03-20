@@ -2,14 +2,14 @@ import React from "react";
 import { View, TouchableWithoutFeedback } from "react-native";
 import PropTypes from "prop-types";
 
-import Icon from "react-native-vector-icons/Ionicons";
+import { Ionicons } from "@expo/vector-icons";
 import { black } from "../../helper/Color";
 
-const BackIcon = ({ style, navigation, color }) => {
+const BackIcon = ({ style, navigation, color = black }) => {
   return (
     <View style={style}>
       <TouchableWithoutFeedback onPress={() => navigation.goBack()}>
-        <Icon name={"md-chevron-back"} size={32} color={color} />
+        <Ionicons name="chevron-back" size={32} color={color} />
       </TouchableWithoutFeedback>
     </View>
   );
@@ -21,8 +21,4 @@ BackIcon.propTypes = {
   style: PropTypes.object,
   navigation: PropTypes.object,
   color: PropTypes.string,
-};
-
-BackIcon.defaultProps = {
-  color: black,
 };

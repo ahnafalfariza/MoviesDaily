@@ -1,41 +1,29 @@
-import React, { Component } from "react";
-import PropTypes from "prop-types";
+import React, { useState, useEffect, useCallback } from "react";
 
 import HomeComponent from "../component/Home/HomeComponent";
 import { requestTVShowScreen as requestTVShowAPI } from "../api/api";
 import { TVShowTypes } from "../helper/Types";
 
-class TVShowScreen extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      moviesData: [],
-    };
-  }
+const TVShowScreen = ({ navigation }) => {
+  const [moviesData, setMoviesData] = useState([]);
 
-  componentDidMount() {
-    this.requestMovieScreen();
-  }
+  const requestTVScreen = useCallback(async () => {
+    await requestTVShowAPI((data) => setMoviesData(data));
+  }, []);
 
-  requestMovieScreen = async () => {
-    await requestTVShowAPI((data) => this.setState({ moviesData: data }));
-  };
+  useEffect(() => {
+    requestTVScreen();
+  }, [requestTVScreen]);
 
-  render() {
-    return (
-      <HomeComponent
-        type={"tv"}
-        subTitle={TVShowTypes}
-        navigation={this.props.navigation}
-        data={this.state.moviesData}
-        onRefresh={this.requestMovieScreen}
-      />
-    );
-  }
-}
+  return (
+    <HomeComponent
+      type="tv"
+      subTitle={TVShowTypes}
+      navigation={navigation}
+      data={moviesData}
+      onRefresh={requestTVScreen}
+    />
+  );
+};
 
 export default TVShowScreen;
-
-TVShowScreen.propTypes = {
-  navigation: PropTypes.object,
-};

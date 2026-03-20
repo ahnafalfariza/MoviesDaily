@@ -12,38 +12,43 @@ const HomeDrawerNavigator = () => {
   return (
     <Drawer.Navigator
       initialRouteName="Movies"
-      drawerType={"slide"}
-      drawerStyle={{ width: "50%", backgroundColor: black }}
-      drawerContentOptions={{
-        activeBackgroundColor: "transparent",
-        activeTintColor: orange,
-        inactiveTintColor: white,
+      screenOptions={{
+        headerShown: false,
+        drawerType: "slide",
+        drawerStyle: { width: "50%", backgroundColor: black },
+        drawerActiveBackgroundColor: "transparent",
+        drawerActiveTintColor: orange,
+        drawerInactiveTintColor: white,
       }}
     >
       <Drawer.Screen
         name="Movies"
         component={MovieScreen}
         options={{
-          drawerLabel: ({ color, focused }) => CustomDrawerStyle(color, focused, "Movies"),
+          drawerLabel: ({ color, focused }) => (
+            <CustomDrawerLabel color={color} focused={focused} title="Movies" />
+          ),
         }}
       />
       <Drawer.Screen
         name="TV Show"
         component={TVShowScreen}
         options={{
-          drawerLabel: ({ color, focused }) => CustomDrawerStyle(color, focused, "TV Shows"),
+          drawerLabel: ({ color, focused }) => (
+            <CustomDrawerLabel color={color} focused={focused} title="TV Shows" />
+          ),
         }}
       />
     </Drawer.Navigator>
   );
 };
 
-const CustomDrawerStyle = (color, focused, title) => {
+const CustomDrawerLabel = ({ color, focused, title }) => {
   return (
     <Text
       style={{
         fontSize: focused ? 20 : 16,
-        fontWeight: null,
+        fontWeight: undefined,
         color: color,
         fontFamily: focused ? "Montserrat-Bold" : "Montserrat-Light",
       }}

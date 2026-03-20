@@ -1,5 +1,4 @@
-import React, { Component } from "react";
-import PropTypes from "prop-types";
+import React, { useState, useCallback } from "react";
 import { Text, View, StyleSheet } from "react-native";
 
 import MovieList from "../component/MovieList";
@@ -8,58 +7,38 @@ import { fetchFunctionListScreen } from "../helper/Types";
 import BackIcon from "../component/Utils/BackIcon";
 import { orange } from "../helper/Color";
 
-class MovieListScreen extends Component {
-  state = {
-    page: 1,
-    data: this.props.route.params.data,
-  };
+const MovieListScreen = ({ route, navigation }) => {
+  const { data: initialData, type, title } = route.params;
+  const [page, setPage] = useState(1);
+  const [data, setData] = useState(initialData);
 
-  onReachEnd = async () => {
-    const page = { page: this.state.page + 1 };
-    const { type, title } = this.props.route.params;
-
+  const onReachEnd = useCallback(async () => {
+    const nextPage = page + 1;
     const fetchUrl = fetchFunctionListScreen(type, title);
-    const response = await fetchUrl(page);
+    const response = await fetchUrl({ page: nextPage });
 
     if (response) {
-      this.setState((prevState) => ({ page: prevState.page + 1, data: [...prevState.data, ...response.results] }));
+      setPage(nextPage);
+      setData((prevData) => [...prevData, ...response.results]);
     }
-  };
+  }, [page, type, title]);
 
-  renderTitle = () => {
-    const { navigation } = this.props;
-    const { title, type } = this.props.route.params;
-    return (
+  return (
+    <Screen>
       <View>
         <View style={{ flexDirection: "row", marginTop: 24 }}>
           <BackIcon style={{ flex: 1, paddingLeft: 12, alignSelf: "flex-start" }} navigation={navigation} />
           <Text style={_styles.headerTitle}>{`${title} ${type === "tv" ? "TV Show" : "Movies"}`}</Text>
-          <View style={{ flex: 1, paddingRight: 12 }}></View>
+          <View style={{ flex: 1, paddingRight: 12 }} />
         </View>
         <View style={_styles.titleBar} />
       </View>
-    );
-  };
-
-  render() {
-    const { navigation } = this.props;
-    const { type } = this.props.route.params;
-    const { data } = this.state;
-    return (
-      <Screen>
-        {this.renderTitle()}
-        <MovieList results={data} navigation={navigation} onReachEnd={this.onReachEnd} type={type} />
-      </Screen>
-    );
-  }
-}
+      <MovieList results={data} navigation={navigation} onReachEnd={onReachEnd} type={type} />
+    </Screen>
+  );
+};
 
 export default MovieListScreen;
-
-MovieListScreen.propTypes = {
-  route: PropTypes.any,
-  navigation: PropTypes.object,
-};
 
 const _styles = StyleSheet.create({
   headerTitle: {
@@ -76,15 +55,5 @@ const _styles = StyleSheet.create({
     backgroundColor: orange,
     marginTop: 4,
     alignSelf: "center",
-  },
-
-  subTitle: {
-    margin: 16,
-    marginTop: 5,
-    fontFamily: "Montserrat-Regular",
-    fontSize: 12,
-    textAlign: "center",
-    alignSelf: "center",
-    width: "70%",
   },
 });
