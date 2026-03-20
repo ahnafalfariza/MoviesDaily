@@ -16,6 +16,11 @@
         "backgroundColor": "#000000"
       },
       "package": "com.moviesdaily"
-    }
+    },
+    "plugins": [
+      "expo-asset",
+      "expo-font",
+      "expo-image"
+    ]
   }
 }
